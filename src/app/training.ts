@@ -19,14 +19,14 @@ interface IUser {
   age: number;
   city: string;
   email?: string;
-  phone: number
+  phone: number;
 }
 
 // 7. Создать интерфейс, который расширяется интерфейсом User с задания №6 и имеет свои дополнительные поля 
 
 interface IStudent extends IUser {
   faculty: string;
-  specialization: string
+  specialization: string;
 }
 
 // 8. Создать функцию, которая принимает строку и вариант,  как именно форматировать строку (задание №5) и на основе этого возвращает форматированную строку.
@@ -54,19 +54,19 @@ const users: IUser[] = [
     name: 'Garry',
     age: 17,
     city: 'London',
-    phone: 123456789
+    phone: 123456789,
   },
   {
     name: 'Ronald',
     age: 17,
     city: 'The fox hole',
-    phone: 564231897
+    phone: 564231897,
   },
   {
     name: 'Tom',
     age: 35,
     city: 'Little Hangleton',
-    phone: 879546213
+    phone: 879546213,
   }
 ]
 
