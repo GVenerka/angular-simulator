@@ -31,13 +31,13 @@ interface IStudent extends IUser {
 
 // 8. Создать функцию, которая принимает строку и вариант,  как именно форматировать строку (задание №5) и на основе этого возвращает форматированную строку.
 
-function changeText(text: string, format: 'uppercase' | 'lowercase' | 'capitalize'): string {
+function formatText(text: string, format: 'uppercase' | 'lowercase' | 'capitalize'): string {
   if (format === 'uppercase') {
     return text.toUpperCase();
   } else if (format === 'lowercase') {
     return text.toLowerCase();
   } else {
-    return text.replace(/^./, char => char.toUpperCase());
+    return text.replace(/^./, (char: string) => char.toUpperCase());
   }
 }
 
