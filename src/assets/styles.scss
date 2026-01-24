@@ -1,0 +1,27 @@
+@use './_fonts';
+@use './_normalize';
+
+* {
+  font-family: 'Nunito Sans';
+}
+
+.container {
+  display: flex;
+  width: 1180px;
+  align-items: center;
+}
+
+:root {
+  --primary-color: #18121E;
+  --white-color: #FDFDFD;
+  --secondary-color: #F2BE22;
+}
+
+.button {
+  height: 52px;
+  border-radius: 4px;
+  padding: 16px 32px;
+  gap: 10px;
+  border: none;
+  color: var(--white-color);
+}
