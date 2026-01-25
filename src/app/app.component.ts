@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import './training.js';
-import { RGBColor } from '../enums/Color.js';
-import { Collection } from './Collection.js';
+import { Color } from '../enums/Color.js';
+import { Collection } from './сollection.js';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +11,23 @@ import { Collection } from './Collection.js';
 })
 export class AppComponent {
 
-  companyName: string = 'румтибет';
+  constructor() {
+    this.saveLastVisitDate();
+    this.updateVisitCount();
+    this.colors.addItem('red');
+    this.colors.replaceItem(0, 'yellow');
+    this.colors.getAllItems();
+    this.numbers.addItem(7);
+    this.numbers.addItem(5);
+    this.numbers.clearAll();
+  }
 
-  isPrimaryColor(color: string): boolean {
-    return color === RGBColor.RED || color === RGBColor.GREEN || color === RGBColor.BLUE? true : false 
+  companyName: string = 'румтибет';
+  colors: Collection<string> = new Collection<string>();
+  numbers: Collection<number> = new Collection<number>();
+
+  isPrimaryColor(color: Color): boolean {
+    return Object.values(Color).includes(color);
   }
 
   saveLastVisitDate(): void {
@@ -24,23 +37,8 @@ export class AppComponent {
 
   updateVisitCount(): void {
     let visits: number = Number(localStorage.getItem('visit-count')) || 0;
-    visits = visits +1;
+    visits = visits + 1;
     localStorage.setItem('visit-count', visits.toString());
   }
 
-  constructor() {
-    this.saveLastVisitDate();
-    this.updateVisitCount();
-  }
-
 }
-
-const colors: Collection<string> = new Collection<string>();
-colors.addItem('red');
-colors.replaceItem(0, 'yellow');
-colors.getAllItems();
-
-const numbers: Collection<number> = new Collection<number>();
-numbers.addItem(7);
-numbers.addItem(5);
-numbers.clearAll();
