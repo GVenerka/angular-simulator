@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import './training.js';
-import { Color } from '../enums/Color.js';
-import { Collection } from './сollection.js';
+import './training';
+import { Color } from '../enums/Color';
+import { Collection } from './сollection';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +27,8 @@ export class AppComponent {
   numbers: Collection<number> = new Collection<number>();
 
   isPrimaryColor(color: Color): boolean {
-    return Object.values(Color).includes(color);
+    const primaryColors: Color[] = [Color.RED, Color.BLUE, Color.GREEN];
+    return primaryColors.includes(color);
   }
 
   saveLastVisitDate(): void {
