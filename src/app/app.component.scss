@@ -1,0 +1,136 @@
+.header {
+  top: 16px;
+  position: relative;
+  font-size: 18px;
+  font-weight: 600;
+
+  .header-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 72px;
+
+    .logo-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 137px;
+      height: 72px;
+
+      .company-name {
+        color: var(--white-color);
+        text-transform: uppercase;
+        letter-spacing: 6px;
+      }
+    }
+
+    .nav-wrapper {
+      display: flex;
+      height: 44px;
+      width: 831px;
+      justify-content: space-between;
+      gap: 50px;
+      align-items: center;
+      margin-left: 212px;
+
+      .navigation {
+        display: flex;
+        gap: 24px;
+
+        a {
+          color: var(--white-color);
+          text-decoration: none;
+        }
+      }
+
+      .consultation-button {
+        background-color: #1A3E3E;
+        width: 157;
+        height: 44;
+        padding: 12px 24px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.main-section {
+  background-image: url('/images/bg-mountains.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 985px;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+
+  .block {
+    display: block;
+  }
+
+  .slogan-text {
+    margin-top: 551px;
+    font-weight: 400;
+    font-size: 50px;
+    text-transform: uppercase;
+    color: var(--white-color);
+    width: 1080px;
+    height: 150px;
+    line-height: 150%;
+  }
+
+  .form-wrapper {
+    align-items: center;
+    background-color: #FFFFFF33;
+    padding: 40px 42px;
+
+    .form {
+      display: flex;
+      justify-content: space-between;
+      width: 1095;
+      gap: 24px;
+
+      .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 270px;
+        gap: 8px;
+
+        span {
+          color: var(--white-color);
+        }
+
+        .input-frame {
+          height: 52px;
+          border-radius: 8px;
+          padding-right: 16px;
+          padding-left: 16px;
+          border: 1px solid #E1E3E4;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .input-text {
+            background-color: #ffffff00;
+            border: none;
+            color: var(--white-color);
+
+            &::placeholder {
+              color: var(--white-color);
+              font-weight: 700;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+
+      .find-button {
+        width: 213px;
+        color: var(--primery-color);
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
+  }
+}
