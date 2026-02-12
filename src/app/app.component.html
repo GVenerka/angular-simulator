@@ -30,12 +30,13 @@
   <div class="date-count">
     @if (isShowDate) {
       {{ currentDate }}
+      <button class="button" (click)="changeContent()" id="change-content-button">Показать счетчик</button>
     } @else {
         <button class="change-counter" id="reduce-counter-button" (click)="reduceCounter()" [disabled]="count === 0">-</button>
         <div>{{ count }}</div>
         <button class="change-counter" id="increase-counter-button" (click)="increaseCounter()">+</button>
+        <button class="button" (click)="changeContent()" id="change-content-button">Показать таймер</button>
       }
-    <button class="button" (click)="changeContent()" id="change-content-button">{{ isShowDate ? 'Показать счетчик' : 'Показать таймер' }}</button>
   </div>
 
   <section class="main-section">

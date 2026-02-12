@@ -116,17 +116,12 @@ export class AppComponent {
     this.numbers.clearAll();
 
     setInterval(() => {
-      this.showDate()
+      this.currentDate = new Date().toLocaleString();
     }, 1000);
 
     setTimeout(() => {
       this.isLoading = false;
     }, 2000);
-  }
-
-  private showDate(): void {
-    const date: Date = new Date();
-    this.currentDate = date.toLocaleString();
   }
 
   increaseCounter(): void {
