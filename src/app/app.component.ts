@@ -157,11 +157,11 @@ export class AppComponent {
     localStorage.setItem('visit-count', visits.toString());
   }
 
-  onFocus() {
+  onFocus(): void {
     this.inputType = 'date';
   }
 
-  onBlur() {
+  onBlur(): void {
     this.inputType = 'text';
   }
 
