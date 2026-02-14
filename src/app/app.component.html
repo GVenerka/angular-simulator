@@ -28,14 +28,14 @@
   <div class="bg-mountain"></div>
 
   <div class="date-count">
-    @if (isShowDate) {
+    @if (widget === 'date') {
       {{ currentDate }}
-      <button class="button" (click)="changeContent()" id="show-count-button">Показать счетчик</button>
+      <button class="button" (click)="changeWidget('date')" id="show-count-button">Показать счетчик</button>
     } @else {
       <button class="change-counter" id="reduce-counter-button" (click)="reduceCounter()" [disabled]="count === 0">-</button>
       <div>{{ count }}</div>
       <button class="change-counter" id="increase-counter-button" (click)="increaseCounter()">+</button>
-      <button class="button" (click)="changeContent()" id="show-date-button">Показать таймер</button>
+      <button class="button" (click)="changeWidget('counter')" id="show-date-button">Показать таймер</button>
     }
   </div>
 
@@ -104,7 +104,7 @@
     <div class="trips-wrapper">
       <div class="media-wrapper">
         <img src="/images/trip-mountain-main.png" class="trip-mountain-main" height="400px" width="350px">
-        <img src="/images/video-icon.svg" class="video-icon">
+        <img src="/images/play-video-icon.svg" class="video-icon">
         <img src="/images/trip-mountain-secondary.png" height="400px" width="350px">
       </div>
       <div class="about-trips">
@@ -125,7 +125,7 @@
         <div class="programs-list">
           @for (program of programs; track program.id) {
             <div class="program-wrapper">
-              <img src = '/images/{{ program.icon }}.svg' height="50px" width="50px">
+              <img [src] = "'/images/' + program.icon + '.svg'" height="50px" width="50px">
               <div class="program">
                 <h3 class="title">{{ program.title }}</h3>
                 <p class="detailed">{{ program.description }}</p>

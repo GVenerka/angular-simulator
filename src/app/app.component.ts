@@ -9,7 +9,7 @@ import { IParticipant } from '../interfaces/IParticipant';
 
 @Component({
   selector: 'app-root',
-  imports: [ FormsModule ],
+  imports: [FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -18,7 +18,8 @@ export class AppComponent {
   companyName: string = 'румтибет';
   private colors: Collection<string> = new Collection<string>();
   private numbers: Collection<number> = new Collection<number>();
-  isShowDate: boolean = true;
+  // isShowDate: boolean = true;
+  widget: 'date' | 'counter' = 'date';
   currentDate: string = new Date().toLocaleString();
   count: number = 0;
   inputText: string = '';
@@ -125,15 +126,19 @@ export class AppComponent {
   }
 
   increaseCounter(): void {
-    this.count ++;
+    this.count++;
   }
 
   reduceCounter(): void {
-    this.count --;
+    this.count--;
   }
 
-  changeContent(): void {
-    this.isShowDate = !this.isShowDate;
+  changeWidget(widget: 'date' | 'counter'): void {
+    if (widget === 'date') {
+      this.widget = 'counter';
+    } else {
+      this.widget = 'date';
+    }
   }
 
   private isPrimaryColor(color: Color): boolean {
