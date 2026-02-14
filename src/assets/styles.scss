@@ -3,12 +3,18 @@
 
 * {
   font-family: 'Nunito Sans';
+  line-height: 20px;
 }
 
 .container {
   display: flex;
   width: 1180px;
   align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.container:hover {
+  transform: scale(1.05);
 }
 
 :root {
@@ -20,8 +26,12 @@
 .button {
   height: 52px;
   border-radius: 4px;
-  padding: 16px 32px;
+  padding: 16px 36px;
   gap: 10px;
   border: none;
   color: var(--white-color);
+  cursor: pointer;
+  background-color: #1A3E3E;
+  font-size: 16px;
+  font-weight: 600;
 }
