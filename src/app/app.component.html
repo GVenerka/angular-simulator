@@ -64,10 +64,10 @@
                 name="date"
                 required
                 id="choose-date"
-                [type]="inputType"
-                (focus)="onFocus()"
-                (blur)="onBlur()"
                 placeholder="Дата похода"
+                [type]="inputType"
+                (focus)="inputType = 'date'"
+                (blur)="inputType = 'text'"
               >
               <img src="/images/calendar-icon.svg" class="arrow">
             </div>

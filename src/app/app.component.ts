@@ -18,7 +18,6 @@ export class AppComponent {
   companyName: string = 'румтибет';
   private colors: Collection<string> = new Collection<string>();
   private numbers: Collection<number> = new Collection<number>();
-  // isShowDate: boolean = true;
   widget: 'date' | 'counter' = 'date';
   currentDate: string = new Date().toLocaleString();
   count: number = 0;
@@ -27,7 +26,7 @@ export class AppComponent {
   chooseLocation: string = 'tour-location';
   chooseDate: string = '';
   chooseParticipant: string = 'participant';
-  inputType: string = 'text';
+  inputType: 'text' | 'date' = 'text';
 
   programs: IProgram[] = [
     {
@@ -155,14 +154,6 @@ export class AppComponent {
     let visits: number = Number(localStorage.getItem('visit-count')) || 0;
     visits = visits + 1;
     localStorage.setItem('visit-count', visits.toString());
-  }
-
-  onFocus(): void {
-    this.inputType = 'date';
-  }
-
-  onBlur(): void {
-    this.inputType = 'text';
   }
 
 }
