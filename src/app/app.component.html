@@ -1,53 +1,146 @@
-<header class="header">
-  <div class="header-wrapper">
-    <div class="container">
-      <div class="logo-wrapper">
-        <img src="/images/company-logo.svg" alt="logo">
-        <div class="company-name">{{ companyName }}</div>
-      </div>
-      <div class="nav-wrapper">
-        <nav class="navigation">
-          <a>Главная</a>
-          <a>Про гида</a>
-          <a>Программа тура</a>
-          <a>Стоимость</a>
-          <a>Блог</a>
-          <a>Контакты</a>
-        </nav>
-        <button class="button consultation-button">Консультация</button>
+@if (isLoading) {
+  <div class="loader-wrapp">
+    <img src="/images/loading-icon.svg" alt="Загрузка" class="loader">
+  </div>
+} @else {
+  <header class="header">
+    <div class="header-wrapper">
+      <div class="container">
+        <div class="logo-wrapper">
+          <img src="/images/company-logo.svg" alt="logo">
+          <div class="company-name">{{ companyName }}</div>
+        </div>
+        <div class="nav-wrapper">
+          <nav class="navigation">
+            <a id="mail-list">Главная</a>
+            <a id="about-guide-list">Про гида</a>
+            <a id="tour-program-list">Программа тура</a>
+            <a id="price-list">Стоимость</a>
+            <a id="blog-list">Блог</a>
+            <a id="contacts-list">Контакты</a>
+          </nav>
+          <button id="consultation-button" class="button consultation-button">Консультация</button>
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<section class="main-section">
-  <div class="container block">
-    <h1 class="slogan-text">Насладись прогулкой в горах <br> с командой единомышленников</h1>
-    <div class="form-wrapper">
-      <form class="form">
-        <div class="input-wrapper">
-          <div class="input-frame">
-            <input class="input-text" type="text" placeholder="Локация для тура">
-            <img src="/images/arrow-icon.svg">
-          </div>
-          <span>выберите из списка</span>
-        </div>
-        <div class="input-wrapper">
-          <div class="input-frame">
-            <input class="input-text" type="text" placeholder="Дата похода">
-            <img src="/images/calendar-icon.svg">
-          </div>
-          <span>укажите диапазон</span>
-        </div>
-        <div class="input-wrapper">
-          <div class="input-frame">
-            <input class="input-text" type="text" placeholder="Участники">
-            <img src="/images/arrow-icon.svg">
-          </div>
-          <span>минимум 4 человека</span>
-        </div>
-        <button class="button find-button">Найти программу</button>
-      </form>
-    </div>
+  <div class="bg-mountain"></div>
+
+  <div class="date-count">
+    @if (widget === 'date') {
+      {{ currentDate }}
+      <button class="button" (click)="changeWidget('date')" id="show-count-button">Показать счетчик</button>
+    } @else {
+      <button class="change-counter" id="reduce-counter-button" (click)="reduceCounter()" [disabled]="count === 0">-</button>
+      <div>{{ count }}</div>
+      <button class="change-counter" id="increase-counter-button" (click)="increaseCounter()">+</button>
+      <button class="button" (click)="changeWidget('counter')" id="show-date-button">Показать таймер</button>
+    }
   </div>
-</section>
+
+  <section class="main-section">
+    <div class="container block">
+      <h1 class="slogan-text">Насладись прогулкой в горах <br> с командой единомышленников</h1>
+      <div class="form-wrapper">
+        <form class="form" id="form">
+          <div class="input-wrapper">
+            <div class="select-frame">
+              <select [(ngModel)]="chooseLocation" name="tour-location" id="tour-location" class="select-text" required>
+                <option class="option" value="tour-location" selected disabled>Локация для тура</option>
+                @for (location of locations; track location.id) {
+                  <option class="option" [value]="location.value">{{ location.name }}</option>
+                }
+              </select>
+              <img src="/images/arrow-icon.svg" class="arrow">
+            </div>
+            <span>выберите из списка</span>
+          </div>
+          <div class="input-wrapper">
+            <div class="select-frame">
+              <input 
+                class="select-text date"
+                [(ngModel)]="chooseDate"
+                name="date"
+                required
+                id="choose-date"
+                placeholder="Дата похода"
+                [type]="inputType"
+                (focus)="inputType = 'date'"
+                (blur)="inputType = 'text'"
+              >
+              <img src="/images/calendar-icon.svg" class="arrow">
+            </div>
+            <span>укажите дату</span>
+          </div>
+          <div class="input-wrapper">
+            <div class="select-frame">
+              <select [(ngModel)]="chooseParticipant" name="tour-participant" id="tour-participant" class="select-text" required>
+                <option class="option" value="participant" disabled>Участники</option>
+                @for (participant of participants; track participant.id) {
+                  <option class="option" [value]="participant.value">{{ participant.name }}</option>
+                }
+              </select>
+              <img src="/images/arrow-icon.svg" class="arrow">
+            </div>
+            <span>выберите из списка</span>
+          </div>
+          <button 
+            class="find-button button"
+            id="find-tour-button"
+            type="submit"
+            [disabled]="!chooseLocation || !chooseDate || !chooseParticipant"
+          >Найти программу</button>
+        </form>
+      </div>
+      <div class="live-input-wrapper">
+        <input class="live-input" id="live-input" type="text" [(ngModel)]="inputText" placeholder="Живой инпут">
+        <div>{{ inputText }}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="our-trips container">
+    <div class="trips-wrapper">
+      <div class="media-wrapper">
+        <img src="/images/trip-mountain-main.png" class="trip-mountain-main" height="400px" width="350px">
+        <img src="/images/play-video-icon.svg" class="video-icon">
+        <img src="/images/trip-mountain-secondary.png" height="400px" width="350px">
+      </div>
+      <div class="about-trips">
+        <span class="sublabel">о нашем походе</span>
+        <h2 class="label">Исследуйте все горные массивы мира вместе с нами</h2>
+        <p class="description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
+        <button class="button" id="show-trips-button">Программа тура</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="best-programs container">
+    <div class="programs-wrapper">
+      <div class="text-wrap">
+        <span class="sublabel">наше предложение</span>
+        <h2 class="label">Лучшие программы для тебя</h2>
+        <p class="description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+        <div class="programs-list">
+          @for (program of programs; track program.id) {
+            <div class="program-wrapper">
+              <img [src] = "'/images/' + program.icon + '.svg'" height="50px" width="50px">
+              <div class="program">
+                <h3 class="title">{{ program.title }}</h3>
+                <p class="detailed">{{ program.description }}</p>
+              </div>
+            </div>
+          }
+        </div>
+        <button class="button" id="show-prises-button">Стоимость программ</button>
+      </div>
+      <div class="image-wrap">
+        <img src="/images/program-lake.png">
+        <img src="/images/program-mountain.png">
+        <img src="/images/program-winter.png">
+        <img src="/images/program-summer.png">
+      </div>
+    </div>
+  </section>
+}
