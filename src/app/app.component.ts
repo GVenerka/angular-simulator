@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import './training';
 import { Color } from '../enums/Color';
 import { Collection } from './сollection';
@@ -6,14 +6,24 @@ import { IProgram } from '../interfaces/IProgram';
 import { FormsModule } from '@angular/forms';
 import { ILocation } from '../interfaces/ILocation';
 import { IParticipant } from '../interfaces/IParticipant';
+import { IDestination } from '../interfaces/IDestination';
+import { IPost } from '../interfaces/IPost';
+import { MessageService } from '../message.service';
+import { MessageType } from '../enums/MessageType';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule],
+  imports: [FormsModule, NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  providers: [MessageService],
 })
 export class AppComponent {
+
+  messageService: MessageService = inject(MessageService);
+  localStorageService: LocalStorageService = inject(LocalStorageService);
   
   companyName: string = 'румтибет';
   private colors: Collection<string> = new Collection<string>();
@@ -21,10 +31,10 @@ export class AppComponent {
   widget: 'date' | 'counter' = 'date';
   currentDate: string = new Date().toLocaleString();
   count: number = 0;
-  inputText: string = '';
+  inputText!: string;
   isLoading: boolean = true;
   chooseLocation: string = 'tour-location';
-  chooseDate: string = '';
+  chooseDate!: string;
   chooseParticipant: string = 'participant';
   inputType: 'text' | 'date' = 'text';
 
@@ -105,6 +115,64 @@ export class AppComponent {
     },
   ];
 
+  destinations: IDestination[] = [
+    {
+      id: 1,
+      title: 'Озеро возле гор',
+      description: 'романтическое приключение',
+      price: 480,
+      rating: 4.9,
+      poster: 'lake-near-mountains',
+    },
+    {
+      id: 2,
+      title: 'Ночь в горах',
+      description: 'в компании друзей',
+      price: 500,
+      rating: 4.5,
+      poster: 'night-in-mountains',
+    },
+    {
+      id: 3,
+      title: 'Растяжка в горах',
+      description: 'для тех, кто заботится о себе',
+      price: 230,
+      rating: 5.0,
+      poster: 'stretching-in-mountains',
+    },
+  ];
+
+  posts: IPost[] = [
+    {
+      id: 1,
+      title: 'Красивая Италя, какая она в реальности?',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      poster: 'italy',
+      postDate: '01/04/2023'
+    },
+    {
+      id: 2,
+      title: 'Долой сомнения! Весь мир открыт для вас!',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
+      poster: 'down-with-assumptions',
+      postDate: '01/04/2023'
+    },
+    {
+      id: 3,
+      title: 'Как подготовиться к путешествию в одиночку? ',
+      description: 'Для современного мира базовый вектор развития предполагает.',
+      poster: 'traveling-alone',
+      postDate: '01/04/2023'
+    },
+    {
+      id: 4,
+      title: 'Индия ... летим?',
+      description: 'Для современного мира базовый.',
+      poster: 'india',
+      postDate: '01/04/2023'
+    },
+  ];
+
   constructor() {
     this.saveLastVisitDate();
     this.updateVisitCount();
@@ -147,13 +215,29 @@ export class AppComponent {
 
   private saveLastVisitDate(): void {
     const currentDate: string = new Date().toISOString();
-    localStorage.setItem('last-visit', currentDate);
+    this.localStorageService.setItem('last-visit', currentDate);
   }
 
   private updateVisitCount(): void {
-    let visits: number = Number(localStorage.getItem('visit-count')) || 0;
+    let visits: number = Number(this.localStorageService.getItem('visit-count')) || 0;
     visits = visits + 1;
-    localStorage.setItem('visit-count', visits.toString());
+    this.localStorageService.setItem('visit-count', visits.toString());
+  }
+
+  addSuccessMessage(): void {
+    this.messageService.addMessage('Данные получены', MessageType.SUCCESS);
+  }
+
+  addInfoMessage(): void {
+    this.messageService.addMessage('Ваш запрос отправлен, ожидайте ответа', MessageType.INFO);
+  }
+
+  addWarningMessage(): void {
+    this.messageService.addMessage('Данные загружаются, пожалуйста, подождите', MessageType.WARN);
+  }
+
+  addErrorMessage(): void {
+    this.messageService.addMessage('Извините, сервис временно не доступен', MessageType.ERROR);
   }
 
 }
