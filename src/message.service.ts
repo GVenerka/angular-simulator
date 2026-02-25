@@ -13,7 +13,7 @@ export class MessageService {
       id: this.nextId++,
       text,
       type
-    };
+    }
     this.messages.unshift(message);
     setTimeout(() => this.closeMessage(message.id), 5000);
   }

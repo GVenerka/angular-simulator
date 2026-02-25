@@ -10,7 +10,7 @@ import { IDestination } from '../interfaces/IDestination';
 import { IPost } from '../interfaces/IPost';
 import { MessageService } from '../message.service';
 import { MessageType } from '../enums/MessageType';
-import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { LocalStorageService } from '../local-storage.service';
 
 @Component({
@@ -63,7 +63,7 @@ export class AppComponent {
     {
       id: 1,
       name: 'гора Иремель',
-      value: 'iremel'
+      value: 'iremel',
     },
     {
       id: 2,
@@ -148,28 +148,28 @@ export class AppComponent {
       title: 'Красивая Италя, какая она в реальности?',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       poster: 'italy',
-      postDate: '01/04/2023'
+      postDate: '01/04/2023',
     },
     {
       id: 2,
       title: 'Долой сомнения! Весь мир открыт для вас!',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
       poster: 'down-with-assumptions',
-      postDate: '01/04/2023'
+      postDate: '01/04/2023',
     },
     {
       id: 3,
       title: 'Как подготовиться к путешествию в одиночку? ',
       description: 'Для современного мира базовый вектор развития предполагает.',
       poster: 'traveling-alone',
-      postDate: '01/04/2023'
+      postDate: '01/04/2023',
     },
     {
       id: 4,
       title: 'Индия ... летим?',
       description: 'Для современного мира базовый.',
       poster: 'india',
-      postDate: '01/04/2023'
+      postDate: '01/04/2023',
     },
   ];
 
