@@ -18,7 +18,6 @@ import { LocalStorageService } from '../local-storage.service';
   imports: [FormsModule, NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [MessageService],
 })
 export class AppComponent {
 
@@ -222,22 +221,6 @@ export class AppComponent {
     let visits: number = Number(this.localStorageService.getItem('visit-count')) || 0;
     visits = visits + 1;
     this.localStorageService.setItem('visit-count', visits.toString());
-  }
-
-  addSuccessMessage(): void {
-    this.messageService.addMessage('Данные получены', MessageType.SUCCESS);
-  }
-
-  addInfoMessage(): void {
-    this.messageService.addMessage('Ваш запрос отправлен, ожидайте ответа', MessageType.INFO);
-  }
-
-  addWarningMessage(): void {
-    this.messageService.addMessage('Данные загружаются, пожалуйста, подождите', MessageType.WARN);
-  }
-
-  addErrorMessage(): void {
-    this.messageService.addMessage('Извините, сервис временно не доступен', MessageType.ERROR);
   }
 
 }

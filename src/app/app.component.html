@@ -111,7 +111,7 @@
         <span class="sublabel">о нашем походе</span>
         <h2 class="label">Исследуйте все горные массивы мира вместе с нами</h2>
         <p class="description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
-        <button class="button" id="show-trips-button" (click)="addWarningMessage()">Программа тура</button>
+        <button class="button" id="show-trips-button" (click)="messageService.addWarningMessage('Данные загружаются, пожалуйста, подождите')">Программа тура</button>
       </div>
     </div>
   </section>
@@ -133,7 +133,7 @@
             </div>
           }
         </div>
-        <button class="button" id="show-prises-button" (click)="addSuccessMessage()">Стоимость программ</button>
+        <button class="button" id="show-prises-button" (click)="messageService.addSuccessMessage('Данные получены')">Стоимость программ</button>
       </div>
       <div class="image-wrap">
         <img src="/images/program-lake.png">
@@ -153,7 +153,7 @@
       @for (destination of destinations; track destination.id) {
         <div class="destination-card">
           <div class="destination-poster">
-            <img [src]="'/images/' + destination.poster + '.png'" alt="{{ destination.poster}}" width="380px" height="500px">
+            <img [src]="'/images/' + destination.poster + '.png'" [alt]="destination.poster" width="380px" height="500px">
           </div>
           <div>
             <div class="rating">
@@ -173,7 +173,7 @@
         </div>
       }
     </div>
-    <button class="button rating-destination" id="rating-destination" (click)="addInfoMessage()">Рейтинг направлений</button>
+    <button class="button rating-destination" id="rating-destination" (click)="messageService.addInfoMessage('Ваш запрос отправлен, ожидайте ответа')">Рейтинг направлений</button>
   </section>
 
   <section class="blog container">
@@ -184,27 +184,25 @@
     <div class="blogs">
       @for (post of posts; track post.id) {
         <div class="post-card">
-          <img [src]="'/images/' + post.poster + '.png'" alt="{{ post.poster }}" width="230px" height="280px">
+          <img [src]="'/images/' + post.poster + '.png'" [alt]="post.poster" width="230px" height="280px">
           <div class="post">
             <h3 class="title">{{ post.title }}</h3>
             <p class="description">{{ post.description }}</p>
             <div class="info-wrapper">
-              <span class="post-date">{{ post.postDate }}</span>
+              <span class="date">{{ post.postDate }}</span>
               <span >читать статью</span>
             </div>
           </div>
         </div>
       }
     </div>
-    <button class="button blog-materials" id="blog-materials" (click)="addErrorMessage()">Другие материалы</button>
+    <button class="button blog-materials" id="blog-materials" (click)="messageService.addErrorMessage('Извините, сервис временно не доступен')">Другие материалы</button>
   </section>
 
   <div class="messages-container">
-    <ng-container>
-      @for (message of messageService.getMessages(); track $index) {
-        <ng-container [ngTemplateOutlet]="messageTemplate" [ngTemplateOutletContext]="{$implicit: message, serviceIndex: $index}"></ng-container>
-      }
-    </ng-container>
+    @for (message of messageService.getMessages(); track message.id) {
+      <ng-container [ngTemplateOutlet]="messageTemplate" [ngTemplateOutletContext]="{$implicit: message, id: message.id}"></ng-container>
+    }
   </div>
 
   <ng-template #messageTemplate let-message>
