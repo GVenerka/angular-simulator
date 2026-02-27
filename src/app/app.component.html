@@ -163,7 +163,7 @@
             <div class="destination">
               <div class="title-wrapper">
                 <span class="title">{{ destination.title }}</span>
-                <span class="description">{{destination.description}}</span>
+                <span class="description">{{ destination.description }}</span>
               </div>
               <div class="price">
                 <span>{{ destination.price }} $</span>
@@ -189,7 +189,7 @@
             <h3 class="title">{{ post.title }}</h3>
             <p class="description">{{ post.description }}</p>
             <div class="info-wrapper">
-              <span class="date">{{ post.postDate }}</span>
+              <span class="date">{{ post.date }}</span>
               <span >читать статью</span>
             </div>
           </div>
@@ -201,7 +201,7 @@
 
   <div class="messages-container">
     @for (message of messageService.getMessages(); track message.id) {
-      <ng-container [ngTemplateOutlet]="messageTemplate" [ngTemplateOutletContext]="{$implicit: message, id: message.id}"></ng-container>
+      <ng-container [ngTemplateOutlet]="messageTemplate" [ngTemplateOutletContext]="{ $implicit: message, id: message.id }"></ng-container>
     }
   </div>
 

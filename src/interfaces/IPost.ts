@@ -3,5 +3,5 @@ export interface IPost {
   poster: string;
   title: string;
   description: string;
-  postDate: string;
+  date: string;
 }
