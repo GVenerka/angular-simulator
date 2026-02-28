@@ -27,19 +27,19 @@ export class MessageService {
     return this.messages;
   }
 
-  addSuccessMessage(content: string): void {
+  showSuccessMessage(content: string): void {
     this.addMessage(content, MessageType.SUCCESS);
   }
 
-  addInfoMessage(content: string): void {
-    this.addMessage(content , MessageType.INFO);
+  showInfoMessage(content: string): void {
+    this.addMessage(content, MessageType.INFO);
   }
 
-  addWarningMessage(content: string): void {
+  showWarningMessage(content: string): void {
     this.addMessage(content, MessageType.WARN);
   }
 
-  addErrorMessage(content: string): void {
+  showErrorMessage(content: string): void {
     this.addMessage(content, MessageType.ERROR);
   }
 }

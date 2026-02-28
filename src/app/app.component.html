@@ -5,39 +5,43 @@
 } @else {
   <header class="header">
     <div class="header-wrapper">
-      <div class="container">
-        <div class="logo-wrapper">
-          <img src="/images/company-logo.svg" alt="logo">
-          <div class="company-name">{{ companyName }}</div>
-        </div>
-        <div class="nav-wrapper">
-          <nav class="navigation">
-            <a id="mail-list">Главная</a>
-            <a id="about-guide-list">Про гида</a>
-            <a id="tour-program-list">Программа тура</a>
-            <a id="price-list">Стоимость</a>
-            <a id="blog-list">Блог</a>
-            <a id="contacts-list">Контакты</a>
-          </nav>
-          <button id="consultation-button" class="button consultation-button">Консультация</button>
+      <div class="wrapp">
+        <div class="container box">
+          <div class="logo-wrapper">
+            <img src="/images/company-logo.svg" alt="logo" width="138px" height="72px">
+            <div class="company-name">{{ companyName }}</div>
+          </div>
+          <div class="nav-wrapper">
+            <nav class="navigation">
+              <a id="mail-list">Главная</a>
+              <a id="about-guide-list">Про гида</a>
+              <a id="tour-program-list">Программа тура</a>
+              <a id="price-list">Стоимость</a>
+              <a id="blog-list">Блог</a>
+              <a id="contacts-list">Контакты</a>
+            </nav>
+            <button id="consultation-button" class="button consultation-button">Консультация</button>
+          </div>
         </div>
       </div>
     </div>
   </header>
 
-  <div class="bg-mountain"></div>
-
-  <div class="date-count">
-    @if (widget === 'date') {
-      {{ currentDate }}
-      <button class="button" (click)="changeWidget('date')" id="show-count-button">Показать счетчик</button>
-    } @else {
-      <button class="change-counter" id="reduce-counter-button" (click)="reduceCounter()" [disabled]="count === 0">-</button>
-      <div>{{ count }}</div>
-      <button class="change-counter" id="increase-counter-button" (click)="increaseCounter()">+</button>
-      <button class="button" (click)="changeWidget('counter')" id="show-date-button">Показать таймер</button>
-    }
+  <div class="count-wrapp">
+    <div class="date-count">
+      @if (widget === 'date') {
+        {{ currentDate }}
+        <button class="button" (click)="changeWidget('date')" id="show-count-button">Показать счетчик</button>
+      } @else {
+        <button class="change-counter" id="reduce-counter-button" (click)="reduceCounter()" [disabled]="count === 0">-</button>
+        <div>{{ count }}</div>
+        <button class="change-counter" id="increase-counter-button" (click)="increaseCounter()">+</button>
+        <button class="button" (click)="changeWidget('counter')" id="show-date-button">Показать таймер</button>
+      }
+    </div>
   </div>
+
+  <div class="bg-mountain"></div>
 
   <section class="main-section">
     <div class="container block">
@@ -111,7 +115,7 @@
         <span class="sublabel">о нашем походе</span>
         <h2 class="label">Исследуйте все горные массивы мира вместе с нами</h2>
         <p class="description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
-        <button class="button" id="show-trips-button" (click)="messageService.addWarningMessage('Данные загружаются, пожалуйста, подождите')">Программа тура</button>
+        <button class="button" id="show-trips-button" (click)="messageService.showWarningMessage('Данные загружаются, пожалуйста, подождите')">Программа тура</button>
       </div>
     </div>
   </section>
@@ -133,7 +137,7 @@
             </div>
           }
         </div>
-        <button class="button" id="show-prises-button" (click)="messageService.addSuccessMessage('Данные получены')">Стоимость программ</button>
+        <button class="button" id="show-prises-button" (click)="messageService.showSuccessMessage('Данные получены')">Стоимость программ</button>
       </div>
       <div class="image-wrap">
         <img src="/images/program-lake.png">
@@ -173,7 +177,7 @@
         </div>
       }
     </div>
-    <button class="button rating-destination" id="rating-destination" (click)="messageService.addInfoMessage('Ваш запрос отправлен, ожидайте ответа')">Рейтинг направлений</button>
+    <button class="button rating-destination" id="rating-destination" (click)="messageService.showInfoMessage('Ваш запрос отправлен, ожидайте ответа')">Рейтинг направлений</button>
   </section>
 
   <section class="blog container">
@@ -196,7 +200,7 @@
         </div>
       }
     </div>
-    <button class="button blog-materials" id="blog-materials" (click)="messageService.addErrorMessage('Извините, сервис временно не доступен')">Другие материалы</button>
+    <button class="button blog-materials" id="blog-materials" (click)="messageService.showErrorMessage('Извините, сервис временно не доступен')">Другие материалы</button>
   </section>
 
   <div class="messages-container">

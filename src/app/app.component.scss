@@ -14,10 +14,12 @@
 }
 
 .header {
-  top: 16px;
   position: relative;
   font-size: 18px;
   font-weight: 600;
+  background: #18121E80;
+  height: 90px;
+  align-items: center;
 
   .header-wrapper {
     display: flex;
@@ -25,43 +27,50 @@
     align-items: center;
     height: 72px;
 
-    .logo-wrapper {
+    .wrapp {
+      margin-top: 24px;
+
+      .logo-wrapper {
       display: flex;
       flex-direction: column;
-      width: 137px;
-      height: 72px;
-
-      .company-name {
-        color: var(--white-color);
-        text-transform: uppercase;
-        letter-spacing: 6px;
-      }
-    }
-
-    .nav-wrapper {
-      display: flex;
-      height: 44px;
-      width: 831px;
-      justify-content: space-between;
-      gap: 50px;
-      align-items: center;
-      margin-left: 212px;
-
-      .navigation {
-        display: flex;
-        gap: 24px;
-
-        a {
+        width: 137px;
+        height: 72px;
+  
+        .company-name {
           color: var(--white-color);
-          text-decoration: none;
-          cursor: pointer;
+          text-transform: uppercase;
+          letter-spacing: 6px;
         }
       }
-
-      .consultation-button {
-        width: 157px;
+  
+      .nav-wrapper {
+        display: flex;
         height: 44px;
-        padding: 12px 24px;
+        width: 831px;
+        justify-content: space-between;
+        gap: 50px;
+        align-items: center;
+        margin-left: 212px;
+  
+        .navigation {
+          display: flex;
+          gap: 24px;
+  
+          a {
+            color: var(--white-color);
+            text-decoration: none;
+            cursor: pointer;
+          }
+        }
+  
+        .consultation-button {
+          width: 157px;
+          height: 44px;
+          padding: 12px 24px;
+          background-color: var(--white-color);
+          color: var(--primery-color);
+          border: none;
+        }
       }
     }
   }
@@ -78,21 +87,25 @@
   z-index: -1;
 }
 
-.date-count {
-  display: flex;
-  justify-content: space-between;
-  width: 380px;
-  margin-left: 1160px;
-  margin-top: 20px;
-  align-items: center;
-}
+.count-wrapp{
+  background: #18121E80;
+  height: 66px;
 
-.change-counter {
-  background-color: #f3f5f400;
-  border: none;
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
+  .date-count {
+    display: flex;
+    justify-content: space-between;
+    width: 380px;
+    margin-left: 1160px;
+    align-items: center;
+  }
+  
+  .change-counter {
+    background-color: #f3f5f400;
+    border: none;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+  }
 }
 
 .main-section {
@@ -184,9 +197,7 @@
 
       .find-button {
         width: 213px;
-        color: var(--primery-color);
         font-weight: 700;
-        background-color: var(--white-color);
       }
 
       .disabled-button {
