@@ -1,43 +1,47 @@
 @if (isLoading) {
   <div class="loader-wrapp">
-    <img src="/images/loading-icon.svg" alt="Загрузка" class="loader">
+    <img src="/images/icons/loading-icon.svg" alt="Загрузка" class="loader">
   </div>
 } @else {
   <header class="header">
     <div class="header-wrapper">
-      <div class="container">
-        <div class="logo-wrapper">
-          <img src="/images/company-logo.svg" alt="logo">
-          <div class="company-name">{{ companyName }}</div>
-        </div>
-        <div class="nav-wrapper">
-          <nav class="navigation">
-            <a id="mail-list">Главная</a>
-            <a id="about-guide-list">Про гида</a>
-            <a id="tour-program-list">Программа тура</a>
-            <a id="price-list">Стоимость</a>
-            <a id="blog-list">Блог</a>
-            <a id="contacts-list">Контакты</a>
-          </nav>
-          <button id="consultation-button" class="button consultation-button">Консультация</button>
+      <div class="wrapp">
+        <div class="container box">
+          <div class="logo-wrapper">
+            <img src="/images/company-logo.svg" alt="logo" width="138px" height="72px">
+            <div class="company-name">{{ companyName }}</div>
+          </div>
+          <div class="nav-wrapper">
+            <nav class="navigation">
+              <a id="mail-list">Главная</a>
+              <a id="about-guide-list">Про гида</a>
+              <a id="tour-program-list">Программа тура</a>
+              <a id="price-list">Стоимость</a>
+              <a id="blog-list">Блог</a>
+              <a id="contacts-list">Контакты</a>
+            </nav>
+            <button id="consultation-button" class="button consultation-button">Консультация</button>
+          </div>
         </div>
       </div>
     </div>
   </header>
 
-  <div class="bg-mountain"></div>
-
-  <div class="date-count">
-    @if (widget === 'date') {
-      {{ currentDate }}
-      <button class="button" (click)="changeWidget('date')" id="show-count-button">Показать счетчик</button>
-    } @else {
-      <button class="change-counter" id="reduce-counter-button" (click)="reduceCounter()" [disabled]="count === 0">-</button>
-      <div>{{ count }}</div>
-      <button class="change-counter" id="increase-counter-button" (click)="increaseCounter()">+</button>
-      <button class="button" (click)="changeWidget('counter')" id="show-date-button">Показать таймер</button>
-    }
+  <div class="count-wrapp">
+    <div class="date-count">
+      @if (widget === 'date') {
+        {{ currentDate }}
+        <button class="button" (click)="changeWidget('date')" id="show-count-button">Показать счетчик</button>
+      } @else {
+        <button class="change-counter" id="reduce-counter-button" (click)="reduceCounter()" [disabled]="count === 0">-</button>
+        <div>{{ count }}</div>
+        <button class="change-counter" id="increase-counter-button" (click)="increaseCounter()">+</button>
+        <button class="button" (click)="changeWidget('counter')" id="show-date-button">Показать таймер</button>
+      }
+    </div>
   </div>
+
+  <div class="bg-mountain"></div>
 
   <section class="main-section">
     <div class="container block">
@@ -52,7 +56,7 @@
                   <option class="option" [value]="location.value">{{ location.name }}</option>
                 }
               </select>
-              <img src="/images/arrow-icon.svg" class="arrow">
+              <img src="/images/icons/arrow-icon.svg" class="arrow">
             </div>
             <span>выберите из списка</span>
           </div>
@@ -69,7 +73,7 @@
                 (focus)="inputType = 'date'"
                 (blur)="inputType = 'text'"
               >
-              <img src="/images/calendar-icon.svg" class="arrow">
+              <img src="/images/icons/calendar-icon.svg" class="arrow">
             </div>
             <span>укажите дату</span>
           </div>
@@ -81,7 +85,7 @@
                   <option class="option" [value]="participant.value">{{ participant.name }}</option>
                 }
               </select>
-              <img src="/images/arrow-icon.svg" class="arrow">
+              <img src="/images/icons/arrow-icon.svg" class="arrow">
             </div>
             <span>выберите из списка</span>
           </div>
@@ -104,14 +108,14 @@
     <div class="trips-wrapper">
       <div class="media-wrapper">
         <img src="/images/trip-mountain-main.png" class="trip-mountain-main" height="400px" width="350px">
-        <img src="/images/play-video-icon.svg" class="video-icon">
+        <img src="/images/icons/play-video-icon.svg" class="video-icon">
         <img src="/images/trip-mountain-secondary.png" height="400px" width="350px">
       </div>
       <div class="about-trips">
         <span class="sublabel">о нашем походе</span>
         <h2 class="label">Исследуйте все горные массивы мира вместе с нами</h2>
         <p class="description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
-        <button class="button" id="show-trips-button">Программа тура</button>
+        <button class="button" id="show-trips-button" (click)="messageService.showWarningMessage('Данные загружаются, пожалуйста, подождите')">Программа тура</button>
       </div>
     </div>
   </section>
@@ -125,7 +129,7 @@
         <div class="programs-list">
           @for (program of programs; track program.id) {
             <div class="program-wrapper">
-              <img [src] = "'/images/' + program.icon + '.svg'" height="50px" width="50px">
+              <img [src] = "'/images/icons/' + program.icon + '.svg'" height="50px" width="50px">
               <div class="program">
                 <h3 class="title">{{ program.title }}</h3>
                 <p class="detailed">{{ program.description }}</p>
@@ -133,7 +137,7 @@
             </div>
           }
         </div>
-        <button class="button" id="show-prises-button">Стоимость программ</button>
+        <button class="button" id="show-prises-button" (click)="messageService.showSuccessMessage('Данные получены')">Стоимость программ</button>
       </div>
       <div class="image-wrap">
         <img src="/images/program-lake.png">
@@ -143,4 +147,78 @@
       </div>
     </div>
   </section>
+
+  <section class="popular-destinations container">
+    <div class="label-wrapper">
+      <span class="sublabel">по версии отдыхающих</span>
+      <h2 class="label">Популярные направления</h2>
+    </div>
+    <div class="destinations-wrapper">
+      @for (destination of destinations; track destination.id) {
+        <div class="destination-card">
+          <div class="destination-poster">
+            <img [src]="'/images/' + destination.poster + '.png'" [alt]="destination.poster" width="380px" height="500px">
+          </div>
+          <div>
+            <div class="rating">
+              <img src="/images/icons/star-icon.svg" alt="star" height="24px" width="24px">
+              <span>{{ destination.rating }}</span>
+            </div>
+            <div class="destination">
+              <div class="title-wrapper">
+                <span class="title">{{ destination.title }}</span>
+                <span class="description">{{ destination.description }}</span>
+              </div>
+              <div class="price">
+                <span>{{ destination.price }} $</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button class="button rating-destination" id="rating-destination" (click)="messageService.showInfoMessage('Ваш запрос отправлен, ожидайте ответа')">Рейтинг направлений</button>
+  </section>
+
+  <section class="blog container">
+    <div class="label-wrapper">
+      <span class="sublabel">делимся впечатлениями</span>
+      <h2 class="label">Блог о путешествиях</h2>
+    </div>
+    <div class="blogs">
+      @for (post of posts; track post.id) {
+        <div class="post-card">
+          <img [src]="'/images/' + post.poster + '.png'" [alt]="post.poster" width="230px" height="280px">
+          <div class="post">
+            <h3 class="title">{{ post.title }}</h3>
+            <p class="description">{{ post.description }}</p>
+            <div class="info-wrapper">
+              <span class="date">{{ post.date }}</span>
+              <span >читать статью</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button class="button blog-materials" id="blog-materials" (click)="messageService.showErrorMessage('Извините, сервис временно не доступен')">Другие материалы</button>
+  </section>
+
+  <div class="messages-container">
+    @for (message of messageService.getMessages(); track message.id) {
+      <ng-container [ngTemplateOutlet]="messageTemplate" [ngTemplateOutletContext]="{ $implicit: message, id: message.id }"></ng-container>
+    }
+  </div>
+
+  <ng-template #messageTemplate let-message>
+    <div class="message">
+      <img src="/images/icons/message-icon.svg" class="message-icon" alt="message-icon" width="40px" height="40px">
+      <div class="text-wrapper">
+        <span class="title">{{ message.type }}</span>
+        <span class="subtitle">{{ message.text }}</span>
+      </div>
+      <button class="close-message" (click)="messageService.closeMessage(message.id)">
+        <img src="/images/icons/close-message-icon.svg" alt="close-message-icon" width="20px" height="20px">
+      </button>
+    </div>
+  </ng-template>
 }
