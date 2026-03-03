@@ -1,0 +1,161 @@
+.fs-20 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.fs-14 {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.footer {
+  height: 587px;
+  width: 100%;
+  background-color: #1A3E3E;
+  color: var(--white-color);
+  position: relative;
+
+  .subscrabe {
+    width: 1180px;
+    margin-left: 370px;
+    margin-top: -100px;
+    height: 196px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 15px 0px #18121E1F;
+    background-color: #FDFDFD;
+    position: absolute;
+    color: var(--primary-color);
+    display: flex;
+
+    .mailing {
+      min-width: 380px;
+      margin: 40px 64px 0 100px;
+      gap: 8px;
+
+      .actual {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 20px;
+        color: var(--secondary-color);
+      }
+
+      .title {
+        font-size: 26px;
+      }
+    }
+
+    .subscrabe-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-top: 40px;
+
+      .label {
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .email-form {
+        display: flex;
+        gap: 16px;
+        margin-top: 8px;
+
+        .email {
+          width: 280px;
+          height: 44px;
+          border-radius: 4px;
+          gap: 10px;
+          padding-right: 16px;
+          padding-left: 16px;
+          border: none;
+          background-color: #F3F5F4;
+        }
+
+        .subscrabe-button {
+          width: 240px;
+          height: 44px;
+          padding: 12px 24px;
+        }
+      }
+
+      .approval {
+        max-width: 80%;
+      }
+    }
+
+    a {
+      color: var(--primary-color);
+    }
+  }
+  
+  .footer-wrapp {
+    margin-top: 178px;
+    display: flex;
+    
+    h3 {
+      margin-top: 0px;
+      margin-bottom: 20px;
+    }
+    
+    ul {
+      list-style-type: ">";
+      padding-inline-start: 8px;
+      
+      li {
+        padding-left: 8px;
+        margin-bottom: 16px;
+        
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+    
+    .info-block {
+      max-width: 480px;
+      
+      .contacts {
+        margin-top: 80px;
+        display: flex;
+        gap: 24px;
+      }
+      
+      .social-network {
+        display: flex;
+        margin-top: 32px;
+        gap: 16px;
+      }
+    }
+    
+    .our-services {
+      margin: 0 120px 0 20px;
+      width: 280px;
+    }
+    
+    .important {
+      width: 280px;
+    }
+  }
+  
+  a {
+    color: var(--white-color);
+  }
+
+  .footer-bottom {
+    height: 66px;
+    width: 100%;
+    background-color: #18121E;
+    align-items: center;
+    display: flex;
+    margin-top: 80px;
+    
+    .footer-bottom-wrapp {
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 1180px;
+    }
+  }
+}

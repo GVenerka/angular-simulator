@@ -1,0 +1,460 @@
+.bg-mountain {
+  background-image: url('/images/bg-mountains.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 985px;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+.main-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 380px;
+
+  .block {
+    display: block;
+  }
+
+  .slogan-text {
+    font-weight: 400;
+    font-size: 50px;
+    text-transform: uppercase;
+    color: var(--white-color);
+    width: 1080px;
+    height: 150px;
+    line-height: 150%;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  input[type="text"]::placeholder {
+    color: var(--white-color);
+  }
+
+  .form-wrapper {
+    align-items: center;
+    background-color: #FFFFFF33;
+    padding: 40px 42px;
+
+    .form {
+      display: flex;
+      justify-content: space-between;
+      width: 1095;
+      gap: 24px;
+
+      .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 270px;
+        gap: 8px;
+
+        span {
+          color: var(--white-color);
+        }
+
+        .select-frame {
+          height: 52px;
+          border-radius: 8px;
+          border: 1px solid #E1E3E4;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: relative;
+          
+          .select-text {
+            cursor: pointer;
+            padding-right: 16px;
+            padding-left: 16px;
+            appearance: none;
+            background-color: #ffffff00;
+            border: none;
+            color: var(--white-color);
+            width: 100%;
+            height: 100%;
+
+            .option {
+              background-color: #b1a8a8;
+            }
+          }
+
+          .arrow {
+            position: absolute;
+            right: 16px;
+            margin-top: -2px;
+            pointer-events: none;
+          }
+        }
+      }
+
+      .find-button {
+        width: 213px;
+        font-weight: 700;
+      }
+
+      .disabled-button {
+        width: 213px;
+        color: var(--white-color);
+        font-weight: 700;
+        background-color: rgba(141, 237, 224, 0.836);
+        cursor: none;
+      }
+    }
+  }
+
+  .live-input-wrapper {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    width: 500px;
+
+    .live-input {
+      height: 42px;
+      width: 200px;
+      padding: 0px 15px;
+      border-radius: 8px;
+      background-color: #FFFFFF33;
+      border: 1px solid #E1E3E4;
+      display: flex;
+      align-items: center;
+      margin-right: 50px;
+    }
+
+    .live-input::placeholder {
+        color: var(--white-color);
+    }
+  }
+}
+
+.our-trips {
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+
+  .trips-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .media-wrapper {
+      position: relative;
+      height: 526px;
+      width: 480px;
+
+      .trip-mountain-main {
+        position: absolute;
+        z-index: 2;
+        margin: 126px 0 0 130px;
+      }
+
+      .video-icon {
+        position: absolute;
+        z-index: 3;
+        margin: 301px 0 0 280px;
+      }
+    }
+  }
+
+  .about-trips {
+    height: 398px;
+    width: 580px;
+    align-items: center;
+    margin: 64px 0 64px 120px;
+  }
+}
+
+.sublabel {
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--secondary-color);
+}
+
+.label {
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 120%;
+  color: var(--primery-color);
+  margin: 8px 0 40px 0;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+  color: var(--primery-color);
+  margin-bottom: 40px;
+}
+
+.best-programs {
+  background-color: #F3F5F4;
+  height: 771px;
+  width: 100%;
+
+  .programs-wrapper {
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+    .text-wrap {
+      height: 591px;
+      width: 580px;
+      margin-right: 90px;
+      margin-top: 80px;
+
+      .program-wrapper {
+        height: 64px;
+        margin-bottom: 40px;
+        display: flex;
+        align-items: center;
+
+        .program {
+          margin-left: 16px;
+
+          .title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 4px;
+            margin-top: 0;
+          }
+
+          .detailed {
+            margin: 0;
+            font-weight: 400;
+            font-size: 14px;
+            color: #000000;
+          }
+        }
+
+      }
+    }
+
+    .image-wrap {
+      margin-top: 120px;
+      display: flex;
+      flex-wrap: wrap;
+      height: 510px;
+      width: 510px;
+      gap: 10px;
+    }
+  }
+}
+
+.popular-destinations {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  .label-wrapper {
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+  }
+
+  .destinations-wrapper {
+    display: flex;
+    gap: 20px;
+
+    .destination-card {
+      position: relative;
+      width: 380px; 
+      height: 500px;
+
+      .destination-poster {
+        position: absolute;
+        z-index: -1;
+      }
+
+      .rating {
+        background: #FDFDFD66;
+        width: 65px;
+        height: 32px;
+        margin-top: 50px;
+        margin-left: 315px;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 18px;
+        padding-left: 8px;
+      }
+
+      .destination {
+        width: 380px;
+        height: 90px;
+        border-bottom-right-radius: 32px;
+        border-bottom-left-radius: 32px;
+        background: #FFFFFF33;
+        backdrop-filter: blur(6px);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 328px;
+
+        .title-wrapper {
+          display: flex;
+          flex-direction: column;
+          margin-top: 35px;
+          
+          .title {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 120%;
+            color: var(--white-color);
+          }
+
+          .description {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            color: var(--white-color);
+          }
+        }
+
+        .price {
+          width: 86px;
+          height: 40px;
+          border-radius: 4px;
+          background: #FFFFFF4D;
+          color: var(--white-color);
+          display: flex;
+          align-items: center;
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 24px;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .rating-destination {
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 95px;
+  }
+}
+
+.blog {
+  background-color: #F3F5F4;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .label-wrapper {
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 85px;
+  }
+
+  .blogs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 20px;
+    width: 1180px;
+    height: 648px;
+
+
+    .post-card {
+      width: 580px;
+      height: 312px;
+      display: flex;
+      gap: 24px;
+      border-radius: 10px;
+      background-color: var(--white-color);
+      align-items: center;
+      justify-content: center;
+
+      .post {
+        width: 294px;
+        height: 280px;
+        gap: 24px;
+        display: grid;
+        grid-template-rows: auto 1fr;
+
+        .title {
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 32px;
+          margin: 16px 0 0 0;
+        }
+
+        .description {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 20px;
+          margin: 0;
+        }
+
+        .info-wrapper {
+          margin-bottom: 16px;
+          display: flex;
+          justify-content: space-between;
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 20px;
+
+          .date {
+            color: var(--secondary-color);
+          }
+        }
+      }
+    }
+
+    .post-card:hover {
+      box-shadow: 0px 0px 15px 0px #18121E1F;
+
+      .title {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .blog-materials {
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 95px;
+  }
+}
+
+.photo-report {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  .label-wrapper {
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+  }
+
+  .photo-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .show-pinterest {
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 198px;
+  }
+}

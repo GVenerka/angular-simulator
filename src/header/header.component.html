@@ -1,0 +1,43 @@
+<header class="header">
+  <div class="header-wrapper">
+    <div class="wrapp">
+      <div class="container box">
+        <div class="logo-wrapper">
+          <img src="/images/company-logo.svg" alt="logo" width="138px" height="72px">
+          <div class="company-name">{{ companyName }}</div>
+        </div>
+        <div class="nav-wrapper">
+          <nav class="navigation">
+            @for (navigation of navigations; track navigation.id) {
+              @if (navigation.id === selectedNavigationId) {
+                <a routerLink="users" routerLinkActive="active-link" [id]="navigation.text">{{ navigation.name }}</a>
+              } @else {
+                <a routerLink="" [id]="navigation.text">{{ navigation.name }}</a>
+              }
+            }
+          </nav>
+          <button id="consultation-button" class="button consultation-button">Консультация</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="count-wrapp">
+  <div class="date-count">
+    @if (widget === 'date') {
+      {{ currentDate }}
+      <button class="button" (click)="changeWidget('date')" id="show-count-button">Показать счетчик</button>
+    } @else {
+      <button 
+        class="change-counter"
+        id="reduce-counter-button"
+        (click)="reduceCounter()"
+        [disabled]="count === 0"
+      >-</button>
+      <div>{{ count }}</div>
+      <button class="change-counter" id="increase-counter-button" (click)="increaseCounter()">+</button>
+      <button class="button" (click)="changeWidget('counter')" id="show-date-button">Показать таймер</button>
+    }
+  </div>
+</div>
+
