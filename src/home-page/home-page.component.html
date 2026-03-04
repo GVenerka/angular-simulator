@@ -170,7 +170,7 @@
   </div>
   <div class="photo-wrapper">
     @for (photo of photos; track $index) {
-      <img [src]="'/images/' + photo.name + '.png'" [alt]="photo.name">
+      <img [src]="'/images/' + photo + '.png'" [alt]="photo">
     }
   </div>
   <button class="button show-pinterest" id="show-pinterest">Наш pinterest</button>

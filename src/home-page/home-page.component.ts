@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { IPhoto } from '../interfaces/IPhoto';
 import { IPost } from '../interfaces/IPost';
 import { IDestination } from '../interfaces/IDestination';
 import { IParticipant } from '../interfaces/IParticipant';
@@ -159,25 +158,6 @@ export class HomePageComponent {
     },
   ];
 
-  photos: IPhoto[] = [
-    {
-      name: 'air-balloons',
-    },
-    {
-      name: 'camping-equipment',
-    },
-    {
-      name: 'burj-al-arab',
-    },
-    {
-      name: 'beach',
-    },
-    {
-      name: 'canyon',
-    },
-    {
-      name: 'travel-diary',
-    },
-  ];
+  photos: string[] = [ 'air-balloons', 'camping-equipment', 'burj-al-arab', 'beach', 'canyon', 'travel-diary' ];
 
 }
