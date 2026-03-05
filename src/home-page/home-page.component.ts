@@ -158,6 +158,6 @@ export class HomePageComponent {
     },
   ];
 
-  photos: string[] = [ 'air-balloons', 'camping-equipment', 'burj-al-arab', 'beach', 'canyon', 'travel-diary' ];
+  photos: string[] = ['air-balloons', 'camping-equipment', 'burj-al-arab', 'beach', 'canyon', 'travel-diary'];
 
 }
