@@ -1,0 +1,177 @@
+<div class="bg-mountain"></div>
+
+<section class="main-section">
+  <div class="container block">
+    <h1 class="slogan-text">Насладись прогулкой в горах <br> с командой единомышленников</h1>
+    <div class="form-wrapper">
+      <form class="form" id="form">
+        <div class="input-wrapper">
+          <div class="select-frame">
+            <select [(ngModel)]="chooseLocation" name="tour-location" id="tour-location" class="select-text" required>
+              <option class="option" value="tour-location" selected disabled>Локация для тура</option>
+              @for (location of locations; track location.id) {
+                <option class="option" [value]="location.value">{{ location.name }}</option>
+              }
+            </select>
+            <img src="/images/icons/arrow-icon.svg" class="arrow">
+          </div>
+          <span>выберите из списка</span>
+        </div>
+        <div class="input-wrapper">
+          <div class="select-frame">
+            <input 
+              class="select-text date"
+              [(ngModel)]="chooseDate"
+              name="date"
+              required
+              id="choose-date"
+              placeholder="Дата похода"
+              [type]="inputType"
+              (focus)="inputType = 'date'"
+              (blur)="inputType = 'text'"
+            >
+            <img src="/images/icons/calendar-icon.svg" class="arrow">
+          </div>
+          <span>укажите дату</span>
+        </div>
+        <div class="input-wrapper">
+          <div class="select-frame">
+            <select [(ngModel)]="chooseParticipant" name="tour-participant" id="tour-participant" class="select-text" required>
+              <option class="option" value="participant" disabled>Участники</option>
+              @for (participant of participants; track participant.id) {
+                <option class="option" [value]="participant.value">{{ participant.name }}</option>
+              }
+            </select>
+            <img src="/images/icons/arrow-icon.svg" class="arrow">
+          </div>
+          <span>выберите из списка</span>
+        </div>
+        <button
+          class="find-button button"
+          id="find-tour-button"
+          type="submit"
+          [disabled]="!chooseLocation || !chooseDate || !chooseParticipant"
+        >Найти программу</button>
+      </form>
+    </div>
+    <div class="live-input-wrapper">
+      <input class="live-input" id="live-input" type="text" [(ngModel)]="inputText" placeholder="Живой инпут">
+      <div>{{ inputText }}</div>
+    </div>
+  </div>
+</section>
+
+<section class="our-trips container">
+  <div class="trips-wrapper">
+    <div class="media-wrapper">
+      <img src="/images/trip-mountain-main.png" class="trip-mountain-main" height="400px" width="350px">
+      <img src="/images/icons/play-video-icon.svg" class="video-icon">
+      <img src="/images/trip-mountain-secondary.png" height="400px" width="350px">
+    </div>
+    <div class="about-trips">
+      <span class="sublabel">о нашем походе</span>
+      <h2 class="label">Исследуйте все горные массивы мира вместе с нами</h2>
+      <p class="description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
+        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из
+        самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
+      <button class="button" id="show-trips-button" (click)="messageService.showWarningMessage('Данные загружаются, пожалуйста, подождите')">Программа тура</button>
+    </div>
+  </div>
+</section>
+
+<section class="best-programs container">
+  <div class="programs-wrapper">
+    <div class="text-wrap">
+      <span class="sublabel">наше предложение</span>
+      <h2 class="label">Лучшие программы для тебя</h2>
+      <p class="description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
+        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+      <div class="programs-list">
+        @for (program of programs; track program.id) {
+          <div class="program-wrapper">
+            <img [src]="'/images/icons/' + program.icon + '.svg'" height="50px" width="50px">
+            <div class="program">
+              <h3 class="title">{{ program.title }}</h3>
+              <p class="detailed">{{ program.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+      <button class="button" id="show-prises-button" (click)="messageService.showSuccessMessage('Данные получены')">Стоимость программ</button>
+    </div>
+    <div class="image-wrap">
+      <img src="/images/program-lake.png">
+      <img src="/images/program-mountain.png">
+      <img src="/images/program-winter.png">
+      <img src="/images/program-summer.png">
+    </div>
+  </div>
+</section>
+
+<section class="popular-destinations container">
+  <div class="label-wrapper">
+    <span class="sublabel">по версии отдыхающих</span>
+    <h2 class="label">Популярные направления</h2>
+  </div>
+  <div class="destinations-wrapper">
+    @for (destination of destinations; track destination.id) {
+      <div class="destination-card">
+        <div class="destination-poster">
+          <img [src]="'/images/' + destination.poster + '.png'" [alt]="destination.poster" width="380px" height="500px">
+        </div>
+        <div>
+          <div class="rating">
+            <img src="/images/icons/star-icon.svg" alt="star" height="24px" width="24px">
+            <span>{{ destination.rating }}</span>
+          </div>
+          <div class="destination">
+            <div class="title-wrapper">
+              <span class="title">{{ destination.title }}</span>
+              <span class="description">{{ destination.description }}</span>
+            </div>
+            <div class="price">
+              <span>{{ destination.price }} $</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <button class="button rating-destination" id="rating-destination" (click)="messageService.showInfoMessage('Ваш запрос отправлен, ожидайте ответа')">Рейтинг направлений</button>
+</section>
+
+<section class="blog container">
+  <div class="label-wrapper">
+    <span class="sublabel">делимся впечатлениями</span>
+    <h2 class="label">Блог о путешествиях</h2>
+  </div>
+  <div class="blogs">
+    @for (post of posts; track post.id) {
+      <div class="post-card">
+        <img [src]="'/images/' + post.poster + '.png'" [alt]="post.poster" width="230px" height="280px">
+        <div class="post">
+          <h3 class="title">{{ post.title }}</h3>
+          <p class="description">{{ post.description }}</p>
+          <div class="info-wrapper">
+            <span class="date">{{ post.date }}</span>
+            <span>читать статью</span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <button class="button blog-materials" id="blog-materials" (click)="messageService.showErrorMessage('Извините, сервис временно не доступен')">Другие материалы</button>
+</section>
+
+<section class="photo-report container">
+  <div class="label-wrapper">
+    <span class="sublabel">фото-отчет</span>
+    <h2 class="label">Делимся впечатлениями</h2>
+  </div>
+  <div class="photo-wrapper">
+    @for (photo of photos; track $index) {
+      <img [src]="'/images/' + photo + '.png'" [alt]="photo">
+    }
+  </div>
+  <button class="button show-pinterest" id="show-pinterest">Наш pinterest</button>
+</section>

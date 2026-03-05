@@ -1,0 +1,19 @@
+<div class="messages-container">
+  @for (message of messageService.getMessages(); track message.id) {
+    <ng-container [ngTemplateOutlet]="messageTemplate" [ngTemplateOutletContext]="{ $implicit: message, id: message.id }"></ng-container>
+  }
+</div>
+
+<ng-template #messageTemplate let-message>
+  <div class="message">
+    <img src="/images/icons/message-icon.svg" class="message-icon" alt="message-icon" width="40px" height="40px">
+    <div class="text-wrapper">
+      <span class="title">{{ message.type }}</span>
+      <span class="subtitle">{{ message.text }}</span>
+    </div>
+    <button class="close-message" id="close-message" (click)="messageService.closeMessage(message.id)">
+      <img src="/images/icons/close-message-icon.svg" alt="close-message-icon" width="20px" height="20px">
+    </button>
+  </div>
+</ng-template>
+
