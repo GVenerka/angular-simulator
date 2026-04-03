@@ -1,13 +1,16 @@
 import { Injectable } from "@angular/core";
 import { IMessage } from "./interfaces/IMessage";
 import { MessageType } from "./enums/MessageType";
+import { BehaviorSubject, filter, last, mergeMap, Observable, tap, timer } from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessageService {
   
-  private messages: IMessage[] = [];
+  private messagesSubject: BehaviorSubject<IMessage[]> = new BehaviorSubject<IMessage[]>([]);
+
+  messages$: Observable<IMessage[]> = this.messagesSubject.asObservable();
   
   private addMessage(text: string, type: MessageType): void {
     const message: IMessage = {
@@ -15,16 +18,19 @@ export class MessageService {
       text,
       type
     }
-    this.messages = [message, ...this.messages];
-    setTimeout(() => this.closeMessage(message.id), 5000);
+    const messageList: IMessage[] = this.messagesSubject.getValue();
+    this.messagesSubject.next([message, ...messageList]);
+    setTimeout(() => this.closeMessage(message), 5000);
   }
 
-  closeMessage(id: number): void {
-    this.messages = this.messages.filter((message: IMessage) => message.id !== id);
+  closeMessage(message: IMessage): void {
+    const messageList: IMessage[] = this.messagesSubject.getValue();
+    const updatedMessageList: IMessage[] = messageList.filter(m => m.id !== message.id);
+    this.messagesSubject.next(updatedMessageList);
   }
 
-  getMessages(): IMessage[] {
-    return this.messages;
+  getMessages(): Observable<IMessage[]> {
+    return this.messages$;
   }
 
   showSuccessMessage(content: string): void {
