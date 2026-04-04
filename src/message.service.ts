@@ -9,7 +9,6 @@ import { BehaviorSubject, filter, last, mergeMap, Observable, tap, timer } from 
 export class MessageService {
   
   private messagesSubject: BehaviorSubject<IMessage[]> = new BehaviorSubject<IMessage[]>([]);
-
   messages$: Observable<IMessage[]> = this.messagesSubject.asObservable();
   
   private addMessage(text: string, type: MessageType): void {
@@ -25,12 +24,12 @@ export class MessageService {
 
   closeMessage(message: IMessage): void {
     const messageList: IMessage[] = this.messagesSubject.getValue();
-    const updatedMessageList: IMessage[] = messageList.filter(m => m.id !== message.id);
+    const updatedMessageList: IMessage[] = messageList.filter((m: IMessage) => m.id !== message.id);
     this.messagesSubject.next(updatedMessageList);
   }
 
-  getMessages(): Observable<IMessage[]> {
-    return this.messages$;
+  getMessages(): IMessage[] {
+    return this.messagesSubject.getValue();
   }
 
   showSuccessMessage(content: string): void {

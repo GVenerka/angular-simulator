@@ -3,34 +3,39 @@ import { UserApiService } from './user-api.service';
 import { LoaderService } from './loader.sevice';
 import { BehaviorSubject, catchError, finalize, Observable, of, tap } from 'rxjs';
 import { IUser } from './interfaces/IUser';
+import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
 
-  private usersApi: UserApiService = inject(UserApiService);
-  loader: LoaderService = inject(LoaderService);
+  private usersApiService: UserApiService = inject(UserApiService);
+  private loaderService: LoaderService = inject(LoaderService);
+  private messageService: MessageService = inject(MessageService);
 
-  private users: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
-  users$: Observable<IUser[]> = this.users.asObservable();
+  private usersSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
+  users$: Observable<IUser[]> = this.usersSubject.asObservable();
 
   setUsers(user: IUser[]): void {
-    this.users.next(user);
+    this.usersSubject.next(user);
   }
 
-  getUsers(): Observable<IUser[]> {
-    return this.users$;
+  getUsers(): IUser[] {
+    return this.usersSubject.getValue();
   }
 
   loadUsers(): Observable<IUser[]> {
-    this.loader.showLoader();
+    this.loaderService.showLoader();
 
-    return this.usersApi.getUsers().pipe(
-      tap((user: IUser[]) => this.setUsers(user)),
-      catchError(() => of([])),
-      finalize(() => this.loader.hideLoader())
-    );
+    return this.usersApiService.getUsers()
+      .pipe(
+        catchError(() => { 
+          this.messageService.showErrorMessage('Произошла ошибка, попробуйте повторить позднее');
+          return of([]);
+        }),
+        finalize(() => this.loaderService.hideLoader())
+      );
   }
   
 }

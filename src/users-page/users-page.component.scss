@@ -1,5 +1,7 @@
 .wrapper {
   background-color: #F3F5F4;
+  padding-top: 80px;
+  padding-bottom: 100px;
 }
 
 .title {
@@ -7,7 +9,7 @@
   font-size: 48px;
   line-height: 29.9px;
   color: #1D3939;
-  margin: 80px 650px;
+  margin: 0px 650px 80px 650px;
   text-transform: capitalize;
 }
 
@@ -62,7 +64,7 @@
 .username {
   color: #D4A373;
   margin-top: 6px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   opacity: 0.95;
 }
