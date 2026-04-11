@@ -1,13 +1,9 @@
-@if (isLoading) {
-  <div class="loader-wrapp">
-    <img src="/images/icons/loading-icon.svg" alt="Загрузка" class="loader">
-  </div>
-} @else {
-  <app-header></app-header>
+<app-loader></app-loader>
 
-  <router-outlet></router-outlet>
-  
-  <app-footer></app-footer>
-  
-  <app-message></app-message>
-}
+<app-header></app-header>
+
+<router-outlet></router-outlet>
+
+<app-footer></app-footer>
+
+<app-message></app-message>

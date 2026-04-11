@@ -7,10 +7,11 @@ import { HeaderComponent } from "../header/header.component";
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from "../footer/footer.component";
 import { MessageComponent } from "../message/message.component";
+import { LoaderComponent } from "../loader/loader.component";
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderComponent, RouterOutlet, FooterComponent, MessageComponent],
+  imports: [HeaderComponent, RouterOutlet, FooterComponent, MessageComponent, LoaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -18,7 +19,6 @@ export class AppComponent {
 
   localStorageService: LocalStorageService = inject(LocalStorageService);
   
-  isLoading: boolean = true;
   private colors: Collection<string> = new Collection<string>();
   private numbers: Collection<number> = new Collection<number>();
   
@@ -31,10 +31,6 @@ export class AppComponent {
     this.numbers.addItem(7);
     this.numbers.addItem(5);
     this.numbers.clearAll();
-
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 2000);
   }
 
   private isPrimaryColor(color: Color): boolean {
