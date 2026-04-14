@@ -1,0 +1,63 @@
+<div class="card">
+  <div class="card-header">
+    <h1 class="name">{{ user.name }}</h1>
+    <div class="username">@{{ user.username }}</div>
+  </div>
+  <section class="section">
+    <h2 class="section-title">Контакты</h2>
+    <div class="row">
+      <div class="label">Эл. почта:</div>
+      <div class="email">{{ user.email }}</div>
+    </div>
+    <div class="row">
+      <div class="label">Телефон:</div>
+      <div>{{ user.phone }}</div>
+    </div>
+    <div class="row">
+      <div class="label">Веб‑сайт:</div>
+      <div class="website">{{ user.website || 'Неизвестно' }}</div>
+    </div>
+  </section>
+  <section class="section">
+    <h2 class="section-title">Адрес проживания</h2>
+    <div class="row">
+      <div class="label">Город:</div>
+      <div>{{ user.address.city }}</div>
+    </div>
+    <div class="row">
+      <div class="label">Улица:</div>
+      <div>{{ user.address.street }}</div>
+    </div>
+    <div class="row">
+      <div class="label">Офис:</div>
+      <div>{{ user.address.suite || 'Неизвестно' }}</div>
+    </div>
+    <div class="row">
+      <div class="label">Индекс:</div>
+      <div>{{ user.address.zipcode }}</div>
+    </div>
+    <div class="row">
+      <div class="label">Координаты:</div>
+      <div class="coords-wrap">
+        <span class="coords">{{ user.address.geo.lat }}</span>
+        <span class="coords">{{ user.address.geo.lng }}</span>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <h2 class="section-title">Место работы</h2>
+    <div class="row">
+      <div class="label">Компания:</div>
+      <div>{{ user.company.name }}</div>
+    </div>
+    <div class="row">
+      <div class="label">Миссия:</div>
+      <div>{{ user.company.catchPhrase || 'Неизвестно' }}</div>
+    </div>
+    <div class="row">
+      <div class="label">Специализация:</div>
+      <div>{{ user.company.bs || 'Неизвестно' }}</div>
+    </div>
+  </section>
+  <button class="button" id="delete-user-bt" (click)="onDeleteUser(user)">Удалить подльзователя</button>
+</div>

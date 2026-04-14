@@ -20,98 +20,6 @@
   gap: 50px 70px;
 }
 
-.card {
-  width: 440px;
-  background: #ffffff;
-  border-radius: 6px;
-  box-shadow: 0 8px 18px rgba(20, 20, 20, 0.06);
-  padding: 28px;
-  margin: 16px;
-  color: #223;
-  box-sizing: border-box;
-  position: relative;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 19.6px;
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0px;
-  height: 6px;
-  background: #D4A373;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  opacity: 0.95;
-}
-
-
-.card-header {
-  padding-top: 6px;
-  margin-bottom: 18px;
-}
-
-.name {
-  margin: 0;
-  color: #0f2d2d;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.username {
-  color: #D4A373;
-  margin-top: 6px;
-  font-size: 15px;
-  font-weight: 600;
-  opacity: 0.95;
-}
-
-.section {
-  padding-top: 12px;
-  margin-top: 8px;
-}
-
-.section-title {
-  font-weight: 800;
-  font-size: 12px;
-  line-height: 13.8px;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: #1D3939;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-}
-
-.label {
-  color: #667C7C;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 19.6px;
-}
-
-.email {
-  color: #D4A373;
-}
-
-.website {
-  color: #D4A373;
-}
-
-.coords-wrap {
-  display: flex;
-  gap: 5px;
-}
-
-.coords {
-  background-color: #f4f7f7;
-}
-
 .empty-message {
   width: 606px;
   height: 90px;
@@ -122,4 +30,17 @@
   background-color: #B15757;
   font-size: 26px;
   line-height: 29.9px;
+}
+
+.update-button {
+  width: 80px;
+  height: 80px;
+  margin-top: 600px;
+  margin-left: 60px;
+  position: fixed;
+  background-color: #D4A373;
+  z-index: 5;
+  box-shadow: 4px 4px 21px 0px #00000040;
+  border: none;
+  border-radius: 50%;
 }

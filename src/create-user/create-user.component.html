@@ -1,0 +1,71 @@
+<div class="main">
+  <form [formGroup]="createUserForm" class="form-wrapper">
+    <div class="wrap">
+      <label>Имя</label>
+      <input id="name" formControlName="name">
+    </div>
+    <div class="wrap">
+      <label>Имя пользователя</label>
+      <input id="username" formControlName="username">
+    </div>
+    <h3>Контакты</h3>
+    <div class="wrap">
+      <label>Эл.почта</label>
+      <input id="email" type="email" formControlName="email">
+    </div>
+    <div class="wrap">
+      <label>Телефон</label>
+      <input id="phone" formControlName="phone">
+    </div>
+    <div class="wrap">
+      <label>Веб‑сайт</label>
+      <input id="website" formControlName="website">
+    </div>
+    <form formGroupName="address" class="form-wrapper">
+      <h3>Адрес проживания</h3>
+      <div class="wrap">
+        <label>Город</label>
+        <input id="city" formControlName="city">
+      </div>
+      <div class="wrap">
+        <label>Улица</label>
+        <input id="street" formControlName="street">
+      </div>
+      <div class="wrap">
+        <label>Офис</label>
+        <input id="suite" formControlName="suite">
+      </div>
+      <div class="wrap">
+        <label>Индекс</label>
+        <input id="zipcode" formControlName="zipcode">
+      </div>
+      <form formGroupName="geo" class="form-wrapper">
+        <h4>Координаты</h4>
+        <div class="wrap">
+          <label>Ширина</label>
+          <input id="lat" formControlName="lat">
+        </div>
+        <div class="wrap">
+          <label>Долгота</label>
+          <input id="lng" formControlName="lng">
+        </div>
+      </form>
+    </form>
+    <form formGroupName="company" class="form-wrapper">
+      <h3>Место работы</h3>
+      <div class="wrap">
+        <label>Компания</label>
+        <input id="name" formControlName="name">
+      </div>
+      <div class="wrap">
+        <label>Миссия</label>
+        <input id="catchPhrase" formControlName="catchPhrase">
+      </div>
+      <div class="wrap">
+        <label>Специализация</label>
+        <input id="bs" formControlName="bs">
+      </div>
+    </form>
+  </form>
+  <button class="create-bt" id="create-bt" (click)="onSubmitForm()" [disabled]="createUserForm.invalid">Создать пользователя</button>
+</div>
