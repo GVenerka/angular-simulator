@@ -14,22 +14,21 @@ export class UserService {
   private usersApiService: UserApiService = inject(UserApiService);
   private loaderService: LoaderService = inject(LoaderService);
   private messageService: MessageService = inject(MessageService);
-  private storage: LocalStorageService = inject(LocalStorageService);
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   private usersSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
   users$: Observable<IUser[]> = this.usersSubject.asObservable();
-  private filterUsers$ = new BehaviorSubject<string | null>('');
 
   setUsers(user: IUser[]): void {
     this.usersSubject.next(user);
-    this.storage.setItem('users', user);
+    this.localStorageService.setItem('users', user);
   }
 
   addUser(user: IUser): void {
     const users: IUser[] = this.getUsers();
     const newUsers: IUser[] = [...users, user];
     this.setUsers(newUsers);
-    this.storage.setItem('users', newUsers);
+    this.localStorageService.setItem('users', newUsers);
   }
 
   getUsers(): IUser[] {
@@ -37,11 +36,16 @@ export class UserService {
   }
 
   loadUsers(): Observable<IUser[]> {
-    this.loaderService.showLoader();
-    const usersOnStorage: IUser[] | null = this.storage.getItem('users');
-    if (usersOnStorage) {
-      this.setUsers(usersOnStorage);
+    const usersFromStorage: IUser[] | null = this.localStorageService.getItem('users');
+    if (usersFromStorage) {
+      this.setUsers(usersFromStorage);
+      return of(usersFromStorage);
     }
+    return this.requestUsers();
+  }
+  
+  requestUsers(): Observable<IUser[]> {
+    this.loaderService.showLoader();
     return this.usersApiService.getUsers()
       .pipe(
         catchError(() => { 
@@ -55,22 +59,6 @@ export class UserService {
   deleteUser(id: number): void {
     const users: IUser[] = this.getUsers().filter(user => user.id !== id);
     this.setUsers(users);
-    this.storage.setItem('users', users);
-  }
-
-  filteredUsers$ = combineLatest([
-    this.users$,
-    this.filterUsers$
-  ]).pipe(
-    map(([users, filter]) =>
-      users.filter(user =>
-        user.name.includes(filter || '')
-      )
-    )
-  );
-
-  filterUsers(value: string | null): void {
-    this.filterUsers$.next(value);
   }
   
 }

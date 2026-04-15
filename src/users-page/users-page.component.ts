@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { IUser } from '../interfaces/IUser';
 import { UserCardComponent } from "../user-card/user-card.component";
@@ -16,7 +16,7 @@ import { UsersFilterComponent } from "../users-filter/users-filter.component";
 export class UsersPageComponent implements OnInit {
 
   private userService: UserService = inject(UserService);
-  filteredUsers$: Observable<IUser[]> = this.userService.filteredUsers$;
+  private filterUsers$ = new BehaviorSubject<string | null>('');
 
   ngOnInit(): void {
     this.loadUsers();
@@ -24,6 +24,13 @@ export class UsersPageComponent implements OnInit {
 
   loadUsers(): void {
     this.userService.loadUsers()
+      .pipe(
+        tap((user: IUser[]) => this.userService.setUsers(user))
+      ).subscribe();
+  }
+
+  requestUsers() {
+    this.userService.requestUsers()
       .pipe(
         tap((user: IUser[]) => this.userService.setUsers(user))
       ).subscribe();
@@ -37,8 +44,23 @@ export class UsersPageComponent implements OnInit {
     this.userService.addUser(user);
   }
 
+  filteredUsers$ = combineLatest([
+    this.userService.users$,
+    this.filterUsers$
+  ]).pipe(
+    map(([users, filter]) =>
+      users.filter((user: IUser) =>
+        user.name.includes(filter || '')
+      )
+    )
+  );
+
+  filterUsers(value: string | null): void {
+    this.filterUsers$.next(value);
+  }
+
   onFilterChange(value: string | null): void {
-    this.userService.filterUsers(value);
+    this.filterUsers(value);
   }
 
 }
