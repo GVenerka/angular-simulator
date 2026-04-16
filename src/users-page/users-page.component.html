@@ -4,7 +4,7 @@
 <div class="wrapper">
   <app-create-user (createUser)="onCreateUser($event)"/>
   <h1 class="title">список пользователей</h1>
-  <app-users-filter (filterUsers)="onFilterChange($event)" />
+  <app-users-filter (filterUsers)="onFilterChange($event)"/>
   <div class="users-list">
     @for (user of filteredUsers$ | async; track user.id) {
       <app-user-card [user]="user" (deleteUser)="onDeleteUser($event)"/>

@@ -14,9 +14,20 @@ import { UsersFilterComponent } from "../users-filter/users-filter.component";
   styleUrl: './users-page.component.scss',
 })
 export class UsersPageComponent implements OnInit {
-
+  
   private userService: UserService = inject(UserService);
-  private filterUsers$ = new BehaviorSubject<string | null>('');
+  private filterUsers: BehaviorSubject<string | null> = new BehaviorSubject<string | null>('');
+  
+  filteredUsers$ = combineLatest([
+    this.userService.users$,
+    this.filterUsers
+    ]).pipe(
+      map(([users, filter]) =>
+        users.filter((user: IUser) =>
+          user.name.includes(filter || '')
+        )
+      )
+  );
 
   ngOnInit(): void {
     this.loadUsers();
@@ -30,7 +41,7 @@ export class UsersPageComponent implements OnInit {
   }
 
   requestUsers() {
-    this.userService.requestUsers()
+    this.userService.fetchUsers()
       .pipe(
         tap((user: IUser[]) => this.userService.setUsers(user))
       ).subscribe();
@@ -43,24 +54,9 @@ export class UsersPageComponent implements OnInit {
   onCreateUser(user: IUser): void {
     this.userService.addUser(user);
   }
-
-  filteredUsers$ = combineLatest([
-    this.userService.users$,
-    this.filterUsers$
-  ]).pipe(
-    map(([users, filter]) =>
-      users.filter((user: IUser) =>
-        user.name.includes(filter || '')
-      )
-    )
-  );
-
-  filterUsers(value: string | null): void {
-    this.filterUsers$.next(value);
-  }
-
+  
   onFilterChange(value: string | null): void {
-    this.filterUsers(value);
+    this.filterUsers.next(value);
   }
 
 }

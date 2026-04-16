@@ -28,7 +28,6 @@ export class UserService {
     const users: IUser[] = this.getUsers();
     const newUsers: IUser[] = [...users, user];
     this.setUsers(newUsers);
-    this.localStorageService.setItem('users', newUsers);
   }
 
   getUsers(): IUser[] {
@@ -41,10 +40,10 @@ export class UserService {
       this.setUsers(usersFromStorage);
       return of(usersFromStorage);
     }
-    return this.requestUsers();
+    return this.fetchUsers();
   }
   
-  requestUsers(): Observable<IUser[]> {
+  fetchUsers(): Observable<IUser[]> {
     this.loaderService.showLoader();
     return this.usersApiService.getUsers()
       .pipe(
@@ -57,7 +56,7 @@ export class UserService {
   }
 
   deleteUser(id: number): void {
-    const users: IUser[] = this.getUsers().filter(user => user.id !== id);
+    const users: IUser[] = this.getUsers().filter((user: IUser) => user.id !== id);
     this.setUsers(users);
   }
   
