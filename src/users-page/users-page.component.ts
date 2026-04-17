@@ -16,15 +16,15 @@ import { UsersFilterComponent } from "../users-filter/users-filter.component";
 export class UsersPageComponent implements OnInit {
   
   private userService: UserService = inject(UserService);
-  private filterUsers: BehaviorSubject<string | null> = new BehaviorSubject<string | null>('');
+  private filterUsersSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   
-  filteredUsers$ = combineLatest([
+  filteredUsers$:  Observable<IUser[]> = combineLatest([
     this.userService.users$,
-    this.filterUsers
+    this.filterUsersSubject
     ]).pipe(
-      map(([users, filter]) =>
+      map(([users, filter]: [IUser[], string]) =>
         users.filter((user: IUser) =>
-          user.name.includes(filter || '')
+          user.name.toLowerCase().includes(filter.toLowerCase() || '')
         )
       )
   );
@@ -55,8 +55,8 @@ export class UsersPageComponent implements OnInit {
     this.userService.addUser(user);
   }
   
-  onFilterChange(value: string | null): void {
-    this.filterUsers.next(value);
+  onFilterChange(value: string): void {
+    this.filterUsersSubject.next(value);
   }
 
 }

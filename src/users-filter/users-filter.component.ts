@@ -11,8 +11,8 @@ import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 })
 export class UsersFilterComponent implements OnInit {
 
-  @Output() filterUsers: EventEmitter<string | null> = new EventEmitter<string | null>();
-  filterControl: FormControl<string | null> = new FormControl('');
+  @Output() filterUsers: EventEmitter<string> = new EventEmitter<string>();
+  filterControl: FormControl<string> = new FormControl('', { nonNullable: true });
   private destroyRef: DestroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
@@ -20,7 +20,7 @@ export class UsersFilterComponent implements OnInit {
       debounceTime(200),
       distinctUntilChanged(),
       takeUntilDestroyed(this.destroyRef),
-      tap((event: string | null) => {
+      tap((event: string) => {
         this.filterUsers.emit(event);
       })
       ).subscribe();

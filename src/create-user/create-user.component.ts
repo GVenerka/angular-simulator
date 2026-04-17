@@ -38,7 +38,7 @@ export class CreateUserComponent {
   })
 
   onSubmitForm(): void {
-    const formValue = { ...this.createUserForm.value, id: Date.now() };
+    const formValue: IUser = { ...this.createUserForm.value, id: Date.now() };
     this.createUser.emit(formValue);
     this.createUserForm.reset();
   }
