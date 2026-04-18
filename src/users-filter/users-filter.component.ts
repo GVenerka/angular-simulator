@@ -20,10 +20,8 @@ export class UsersFilterComponent implements OnInit {
       debounceTime(200),
       distinctUntilChanged(),
       takeUntilDestroyed(this.destroyRef),
-      tap((event: string) => {
-        this.filterUsers.emit(event);
-      })
-      ).subscribe();
+      tap((event: string) => {this.filterUsers.emit(event);})
+    ).subscribe();
   }
 
 }
