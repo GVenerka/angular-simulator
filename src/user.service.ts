@@ -18,6 +18,7 @@ export class UserService {
 
   private usersSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
   users$: Observable<IUser[]> = this.usersSubject.asObservable();
+  private filterUsers$ = new BehaviorSubject<string | null>('');
 
   setUsers(user: IUser[]): void {
     this.usersSubject.next(user);
