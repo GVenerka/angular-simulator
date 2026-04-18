@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IUser } from '../interfaces/IUser';
 
 @Component({
@@ -10,36 +10,36 @@ import { IUser } from '../interfaces/IUser';
 })
 export class CreateUserComponent {
 
-  @Output() createUser = new EventEmitter();
-  user!: IUser;
+  @Output() createUser: EventEmitter<IUser> = new EventEmitter<IUser>();
   private fb: FormBuilder = inject(FormBuilder);
 
-  createUserForm = this.fb.group({
-    id: Date.now(),
-    name: [(''), [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-    username: [(''), [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-    email: [(''), [Validators.required, Validators.email, Validators.maxLength(100)]],
-    phone: [(''), [Validators.required, Validators.minLength(10), Validators.maxLength(25)]],
-    website: [(''), [Validators.maxLength(100)]],
+  createUserForm: FormGroup = this.fb.group({
+    id: [Date.now()],
+    name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+    username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+    email: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
+    phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(25)]],
+    website: ['', [Validators.maxLength(100)]],
     address: this.fb.group({
-      city: [(''), [Validators.required, Validators.maxLength(50)]],
-      street: [(''), [Validators.required, Validators.maxLength(100)]],
-      suite: [(''), [Validators.maxLength(50)]],
-      zipcode: [(''), [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
+      city: ['', [Validators.required, Validators.maxLength(50)]],
+      street: ['', [Validators.required, Validators.maxLength(100)]],
+      suite: ['', [Validators.maxLength(50)]],
+      zipcode: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
       geo: this.fb.group({
-        lat: [(''), [Validators.required]],
-        lng: [(''), [Validators.required]],
+        lat: ['', [Validators.required]],
+        lng: ['', [Validators.required]],
       })
     }),
     company: this.fb.group({
-      name: [(''), [Validators.required, Validators.maxLength(50)]],
-      catchPhrase: [(''), [Validators.maxLength(200)]],
-      bs: [(''), [Validators.maxLength(100)]]
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      catchPhrase: ['', [Validators.maxLength(200)]],
+      bs: ['', [Validators.maxLength(100)]]
     })
   })
 
-  onSubmitForm() {
-    this.createUser.emit(this.createUserForm.value);
+  onSubmitForm(): void {
+    const formValue: IUser = { ...this.createUserForm.value, id: Date.now() };
+    this.createUser.emit(formValue);
     this.createUserForm.reset();
   }
 }

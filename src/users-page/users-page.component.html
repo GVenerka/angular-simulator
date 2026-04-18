@@ -1,13 +1,13 @@
-<button class="update-button" id="update-button" (click)="loadUsers()">
+<button class="update-button" id="update-button" (click)="requestUsers()">
   <img src="/images/icons/updates-icon.svg">
 </button>
 <div class="wrapper">
-  <app-create-user (createUser)="createUser($event)"/>
+  <app-create-user (createUser)="onCreateUser($event)"/>
   <h1 class="title">список пользователей</h1>
-  <app-users-filter (filteringUser)="onFilterChange($event)" />
+  <app-users-filter (filterUsers)="onFilterChange($event)"/>
   <div class="users-list">
     @for (user of filteredUsers$ | async; track user.id) {
-      <app-user-card [user]="user" (deleteUser)="deleteUser($event)"/>
+      <app-user-card [user]="user" (deleteUser)="onDeleteUser($event)"/>
     } @empty {
     <p class="empty-message">Нет пользователей для отображения</p>
     }
