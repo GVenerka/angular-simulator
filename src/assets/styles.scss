@@ -19,9 +19,26 @@
 }
 
 :root {
-  --primary-color: #18121E;
-  --white-color: #FDFDFD;
+  --primary-text-color: #18121E;
+  --main-bg-text-color: #FDFDFD;
+  --mint-cream-color: #F3F5F4;
   --secondary-color: #F2BE22;
+  --footer-bg-color: #1A3E3E;
+  --text-color: #000000;
+  --users-text-color: #1D3939;
+  --box-shadow-color: #18121E1F;
+  --user-card-text-color: #223;
+}
+
+.my-app-dark {
+  --primary-text-color: #dabef6;
+  --mint-cream-color: #333433;
+  --main-bg-text-color: #252424;
+  --footer-bg-color:  #878686;
+  --text-color: #c7c5c5;
+  --users-text-color: #74e4e4;
+  --box-shadow-color: #d4b2f51f;
+  --user-card-text-color: rgb(163, 163, 221);
 }
 
 .button {
@@ -30,9 +47,9 @@
   padding: 16px 36px;
   gap: 10px;
   border: none;
-  color: var(--white-color);
+  color: var(--main-bg-text-color);
   cursor: pointer;
-  background-color: #1A3E3E;
+  background-color: var(--footer-bg-color);
   font-size: 16px;
   font-weight: 600;
 }

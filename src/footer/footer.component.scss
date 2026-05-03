@@ -13,8 +13,8 @@
 .footer {
   height: 587px;
   width: 100%;
-  background-color: #1A3E3E;
-  color: var(--white-color);
+  background-color: var(--footer-bg-color);
+  color: var(--main-bg-text-color);
   position: relative;
 
   .subscribe {
@@ -23,10 +23,10 @@
     margin-top: -100px;
     height: 196px;
     border-radius: 6px;
-    box-shadow: 0px 0px 15px 0px #18121E1F;
-    background-color: #FDFDFD;
+    box-shadow: 0px 0px 15px 0px var(--box-shadow-color);
+    background-color: var(--main-bg-text-color);
     position: absolute;
-    color: var(--primary-color);
+    color: var(--primary-text-color);
     display: flex;
 
     .mailing {
@@ -42,6 +42,7 @@
       }
 
       .title {
+        color: var(--primary-text-color);
         font-size: 26px;
       }
     }
@@ -85,7 +86,7 @@
     }
 
     a {
-      color: var(--primary-color);
+      color: var(--primary-text-color);
     }
   }
   
@@ -125,6 +126,7 @@
         display: flex;
         margin-top: 32px;
         gap: 16px;
+        font-size: 29px;
       }
     }
     
@@ -139,7 +141,7 @@
   }
   
   a {
-    color: var(--white-color);
+    color: var(--main-bg-text-color);
   }
 
   .footer-bottom {
