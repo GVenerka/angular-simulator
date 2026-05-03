@@ -16,7 +16,18 @@
               }
             }
           </nav>
+          <p-selectButton 
+            [options]="themes" 
+            [ngModel]="themeService.theme$ | async"
+            optionLabel="label"
+            optionValue="value"
+            (onChange)="changeTheme($event.value)">
+          </p-selectButton>
           <button id="consultation-button" class="button consultation-button">Консультация</button>
+          <div class="theme-toggle">
+            <p-toggleswitch [ngModel]="themeService.isDark$ | async" (onChange)="toggleDarkMode($event)"/>
+            <fa-icon [icon]="(themeService.isDark$ | async) ? faMoon: faSun"/>
+          </div>
         </div>
       </div>
     </div>

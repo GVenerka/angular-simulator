@@ -6,10 +6,12 @@ import { IUser } from '../interfaces/IUser';
 import { UserCardComponent } from "../user-card/user-card.component";
 import { CreateUserComponent } from "../create-user/create-user.component";
 import { UsersFilterComponent } from "../users-filter/users-filter.component";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowsRotate, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-users-page',
-  imports: [AsyncPipe, UserCardComponent, CreateUserComponent, UsersFilterComponent],
+  imports: [AsyncPipe, UserCardComponent, CreateUserComponent, UsersFilterComponent, FontAwesomeModule],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',
 })
@@ -17,14 +19,15 @@ export class UsersPageComponent implements OnInit {
   
   private userService: UserService = inject(UserService);
   private filterUsersSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  
+  faArrowsRotate: IconDefinition = faArrowsRotate;
+
   filteredUsers$: Observable<IUser[]> = combineLatest([
     this.userService.users$,
     this.filterUsersSubject
     ]).pipe(
       map(([users, filter]: [IUser[], string]) =>
         users.filter((user: IUser) =>
-          user.name.toLowerCase().includes(filter.toLowerCase() || '')
+          user.name.trim().toLowerCase().includes(filter.trim().toLowerCase() || '')
         )
       )
   );
@@ -40,7 +43,7 @@ export class UsersPageComponent implements OnInit {
       ).subscribe();
   }
 
-  requestUsers() {
+  requestUsers(): void {
     this.userService.fetchUsers()
       .pipe(
         tap((user: IUser[]) => this.userService.setUsers(user))

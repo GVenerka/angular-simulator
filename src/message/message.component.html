@@ -6,13 +6,13 @@
 
 <ng-template #messageTemplate let-message>
   <div class="message">
-    <img src="/images/icons/message-icon.svg" class="message-icon" alt="message-icon" width="40px" height="40px">
+    <fa-icon [icon]="faEnvelope" class="message-icon"></fa-icon>
     <div class="text-wrapper">
       <span class="title">{{ message.type }}</span>
       <span class="subtitle">{{ message.text }}</span>
     </div>
     <button class="close-message" id="close-message" (click)="messageService.closeMessage(message)">
-      <img src="/images/icons/close-message-icon.svg" alt="close-message-icon" width="20px" height="20px">
+      <fa-icon [icon]="faCircleXmark"></fa-icon>
     </button>
   </div>
 </ng-template>

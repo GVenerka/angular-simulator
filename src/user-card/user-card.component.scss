@@ -1,11 +1,11 @@
 .card {
   width: 440px;
-  background: #ffffff;
+  background: var(--main-bg-text-color);
   border-radius: 6px;
   box-shadow: 0 8px 18px rgba(20, 20, 20, 0.06);
   padding: 28px;
   margin: 16px;
-  color: #223;
+  color: var(--user-card-text-color);
   box-sizing: border-box;
   position: relative;
   font-weight: 700;
@@ -34,7 +34,7 @@
 
 .name {
   margin: 0;
-  color: #0f2d2d;
+  color: var(--user-card-text-color);
   font-size: 24px;
   font-weight: 700;
 }
@@ -58,7 +58,7 @@
   line-height: 13.8px;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: #1D3939;
+  color: var(--users-text-color);
 }
 
 .row {

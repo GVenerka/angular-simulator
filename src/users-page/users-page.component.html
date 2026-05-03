@@ -1,5 +1,5 @@
 <button class="update-button" id="update-button" (click)="requestUsers()">
-  <img src="/images/icons/updates-icon.svg">
+  <fa-icon [icon]="faArrowsRotate" class="updates"></fa-icon>
 </button>
 <div class="wrapper">
   <app-create-user (createUser)="onCreateUser($event)"/>
