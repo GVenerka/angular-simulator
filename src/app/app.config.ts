@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection(),
     providePrimeNG({
       theme: {
-        preset: Aura,
+        preset: localStorage.getItem('primeTheme') ?? Aura,
         options: {
           darkModeSelector: '.my-app-dark'
         }

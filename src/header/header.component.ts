@@ -27,11 +27,6 @@ export class HeaderComponent implements OnInit {
   themeService: ThemeService = inject(ThemeService);
   faSun: IconDefinition = faSun;
   faMoon: IconDefinition = faMoon;
-  themes = [
-    { label: 'Aura', value: Theme.AURA },
-    { label: 'Lara', value: Theme.LARA },
-    { label: 'Nora', value: Theme.NORA }
-  ];
   navigations: INavigation[] = [
     {
       name: 'Главная',
@@ -52,7 +47,7 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleDarkMode(event: ToggleSwitchChangeEvent): void {
-    this.themeService.applyDarkTheme(event.checked);
+    this.themeService.toggleDarkMode(event.checked);
   }
 
   changeTheme(theme: Theme): void {

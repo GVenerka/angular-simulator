@@ -17,7 +17,7 @@
             }
           </nav>
           <p-selectButton 
-            [options]="themes" 
+            [options]="themeService.themes" 
             [ngModel]="themeService.theme$ | async"
             optionLabel="label"
             optionValue="value"

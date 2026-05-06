@@ -14,29 +14,34 @@ import { Preset } from '@primeuix/themes/types';
 export class ThemeService {
 
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-  primeng: PrimeNG = inject(PrimeNG);
+  private primeng: PrimeNG = inject(PrimeNG);
 
   private isDarkThemeSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.initDarkMode());
-  isDark$ :Observable<boolean> = this.isDarkThemeSubject.asObservable().pipe(
+  isDark$: Observable<boolean> = this.isDarkThemeSubject.asObservable().pipe(
     tap((isDark: boolean) => {
       const element: HTMLHtmlElement = document.querySelector('html')!;
-    isDark? element.classList.add('my-app-dark'): element.classList.remove('my-app-dark');
+    isDark ? element.classList.add('my-app-dark') : element.classList.remove('my-app-dark');
     })
   );
 
   private themeSubject: BehaviorSubject<Theme> = new BehaviorSubject<Theme>(this.initPrimeTheme())
   theme$: Observable<Theme> = this.themeSubject.asObservable();
 
+  themes = [
+    { label: 'Aura', value: Theme.AURA },
+    { label: 'Lara', value: Theme.LARA },
+    { label: 'Nora', value: Theme.NORA }
+  ];
+
   constructor() {
-    const savedTheme = this.initPrimeTheme();
-    this.changeTheme(savedTheme);
+    this.changeTheme(this.themeSubject.value);
   }
 
   private initDarkMode(): boolean {
     return this.localStorageService.getItem('isDark') ?? false;
   }
 
-  applyDarkTheme(isDark: boolean): void {
+  toggleDarkMode(isDark: boolean): void {
     this.isDarkThemeSubject.next(isDark);
     this.localStorageService.setItem('isDark', isDark);
   }
