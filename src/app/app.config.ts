@@ -6,6 +6,30 @@ import Lara from '@primeuix/themes/lara';
 import Nora from '@primeuix/themes/nora';
 
 import { routes } from './app.routes';
+import { Preset } from '@primeuix/themes/types';
+import { Theme } from '../enums/Theme';
+
+function getTheme(): Preset {
+  const primeTheme = localStorage.getItem('primeTheme');
+
+  if (!primeTheme) {
+    return Aura;
+  }
+
+  const theme = JSON.parse(primeTheme);
+
+  const themes: Record<string, Preset> = {
+    [Theme.AURA]: Aura,
+    [Theme.LARA]: Lara,
+    [Theme.NORA]: Nora,
+  };
+
+  if (themes[theme]) {
+    return themes[theme];
+  }
+
+  return Aura;
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,7 +38,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection(),
     providePrimeNG({
       theme: {
-        preset: localStorage.getItem('primeTheme') ?? Aura,
+        preset: getTheme(),
         options: {
           darkModeSelector: '.my-app-dark'
         }

@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core';
-import { PrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
 import Nora from '@primeuix/themes/nora';
@@ -7,6 +6,8 @@ import { LocalStorageService } from './local-storage.service';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Theme } from './enums/Theme';
 import { Preset } from '@primeuix/themes/types';
+import { ITheme } from './interfaces/ITheme';
+import { usePreset } from '@primeuix/themes';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,6 @@ import { Preset } from '@primeuix/themes/types';
 export class ThemeService {
 
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-  private primeng: PrimeNG = inject(PrimeNG);
 
   private isDarkThemeSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.initDarkMode());
   isDark$: Observable<boolean> = this.isDarkThemeSubject.asObservable().pipe(
@@ -27,7 +27,7 @@ export class ThemeService {
   private themeSubject: BehaviorSubject<Theme> = new BehaviorSubject<Theme>(this.initPrimeTheme())
   theme$: Observable<Theme> = this.themeSubject.asObservable();
 
-  themes = [
+  themes: ITheme[] = [
     { label: 'Aura', value: Theme.AURA },
     { label: 'Lara', value: Theme.LARA },
     { label: 'Nora', value: Theme.NORA }
@@ -51,24 +51,14 @@ export class ThemeService {
   }
 
   changeTheme(theme: Theme): void {
-    this.themeSubject.next(theme);
-    this.localStorageService.setItem('primeTheme', theme);
-
-    this.primeng.theme.set({
-      preset: this.getPreset(theme)
-    });
-  }
-
-  private getPreset(theme: Theme): Preset {
-    switch (theme) {
-      case Theme.LARA:
-        return Lara;
-      case Theme.NORA:
-        return Nora;
-      case Theme.AURA:
-      default:
-        return Aura;
+    const themes: Record<Theme, Preset> = {
+      [Theme.AURA]: Aura,
+      [Theme.LARA]: Lara,
+      [Theme.NORA]: Nora,
     }
+    const preset = themes[theme];
+    usePreset(preset);
+    this.localStorageService.setItem('primeTheme', theme);
   }
 
 }
