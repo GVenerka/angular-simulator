@@ -8,15 +8,16 @@ import Nora from '@primeuix/themes/nora';
 import { routes } from './app.routes';
 import { Preset } from '@primeuix/themes/types';
 import { Theme } from '../enums/Theme';
+import { ITheme } from '../interfaces/ITheme';
 
 function getTheme(): Preset {
-  const primeTheme = localStorage.getItem('primeTheme');
+  const primeTheme: string | null = localStorage.getItem('primeTheme');
 
   if (!primeTheme) {
     return Aura;
   }
 
-  const theme = JSON.parse(primeTheme);
+  const theme: string = JSON.parse(primeTheme);
 
   const themes: Record<string, Preset> = {
     [Theme.AURA]: Aura,

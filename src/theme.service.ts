@@ -56,7 +56,7 @@ export class ThemeService {
       [Theme.LARA]: Lara,
       [Theme.NORA]: Nora,
     }
-    const preset = themes[theme];
+    const preset: Preset = themes[theme];
     usePreset(preset);
     this.localStorageService.setItem('primeTheme', theme);
   }
