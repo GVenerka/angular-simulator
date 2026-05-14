@@ -1,5 +1,5 @@
 .wrapper {
-  background-color: #F3F5F4;
+  background-color: var(--mint-cream-color);
   padding-top: 80px;
   padding-bottom: 100px;
 }
@@ -8,7 +8,7 @@
   font-weight: 800;
   font-size: 48px;
   line-height: 29.9px;
-  color: #1D3939;
+  color: var(--users-text-color);
   margin: 0px 650px 80px 650px;
   text-transform: capitalize;
 }
@@ -43,4 +43,9 @@
   box-shadow: 4px 4px 21px 0px #00000040;
   border: none;
   border-radius: 50%;
+}
+
+.updates {
+  color: var(--white-color);
+  font-size: 40px;
 }

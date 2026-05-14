@@ -6,10 +6,13 @@ import { ILocation } from '../interfaces/ILocation';
 import { IProgram } from '../interfaces/IProgram';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from '../message.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faAngleDown, faCirclePlay, faStar, faPersonHiking, faShield, faTag, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule],
+  imports: [FormsModule, FontAwesomeModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
@@ -17,6 +20,13 @@ export class HomePageComponent {
 
   messageService: MessageService = inject(MessageService);
 
+  faAngleDown: IconDefinition = faAngleDown;
+  faCalendar: IconDefinition = faCalendar;
+  faPlay: IconDefinition = faCirclePlay;
+  faStar: IconDefinition = faStar;
+  faPersonHiking: IconDefinition = faPersonHiking;
+  faShield: IconDefinition = faShield;
+  faTag: IconDefinition = faTag;
   inputText!: string;
   chooseLocation: string = 'tour-location';
   chooseDate!: string;
@@ -28,19 +38,19 @@ export class HomePageComponent {
       id: 1,
       title: 'Опытный гид',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      icon: 'guides-icon',
+      icon: this.faPersonHiking,
     },
     {
       id: 2,
       title: 'Безопасный поход',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      icon: 'safety-icon',
+      icon: this.faShield,
     },
     {
       id: 3,
       title: 'Лояльные цены',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      icon: 'price-icon',
+      icon: this.faTag,
     },
   ];
 

@@ -22,7 +22,7 @@
     font-weight: 400;
     font-size: 50px;
     text-transform: uppercase;
-    color: var(--white-color);
+    color: var(--main-bg-text-color);
     width: 1080px;
     height: 150px;
     line-height: 150%;
@@ -38,7 +38,7 @@
   }
 
   input[type="text"]::placeholder {
-    color: var(--white-color);
+    color: var(--main-bg-text-color);
   }
 
   .form-wrapper {
@@ -59,7 +59,7 @@
         gap: 8px;
 
         span {
-          color: var(--white-color);
+          color: var(--main-bg-text-color);
         }
 
         .select-frame {
@@ -78,7 +78,7 @@
             appearance: none;
             background-color: #ffffff00;
             border: none;
-            color: var(--white-color);
+            color: var(--main-bg-text-color);
             width: 100%;
             height: 100%;
 
@@ -92,6 +92,7 @@
             right: 16px;
             margin-top: -2px;
             pointer-events: none;
+            color: var(--main-bg-text-color);
           }
         }
       }
@@ -103,7 +104,7 @@
 
       .disabled-button {
         width: 213px;
-        color: var(--white-color);
+        color: var(--main-bg-text-color);
         font-weight: 700;
         background-color: rgba(141, 237, 224, 0.836);
         cursor: none;
@@ -130,17 +131,18 @@
     }
 
     .live-input::placeholder {
-        color: var(--white-color);
+        color: var(--main-bg-text-color);
     }
   }
 }
 
 .our-trips {
-  margin: 0 auto;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  background-color: var(--main-bg-text-color);
+  height: 726px;
+  width: 100%;
 
   .trips-wrapper {
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
 
@@ -159,6 +161,8 @@
         position: absolute;
         z-index: 3;
         margin: 301px 0 0 280px;
+        font-size: 50px;
+        color: var(--main-bg-text-color);
       }
     }
   }
@@ -181,7 +185,7 @@
   font-weight: 800;
   font-size: 32px;
   line-height: 120%;
-  color: var(--primery-color);
+  color: var(--primary-text-color);
   margin: 8px 0 40px 0;
 }
 
@@ -189,12 +193,12 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 150%;
-  color: var(--primery-color);
+  color: var(--primary-text-color);
   margin-bottom: 40px;
 }
 
 .best-programs {
-  background-color: #F3F5F4;
+  background-color: var(--mint-cream-color);
   height: 771px;
   width: 100%;
 
@@ -216,6 +220,10 @@
         display: flex;
         align-items: center;
 
+        .icons {
+          font-size: 38px;
+        }
+
         .program {
           margin-left: 16px;
 
@@ -230,7 +238,7 @@
             margin: 0;
             font-weight: 400;
             font-size: 14px;
-            color: #000000;
+            color: var(--text-color);
           }
         }
 
@@ -249,7 +257,8 @@
 }
 
 .popular-destinations {
-  margin: 0 auto;
+  width: 100%;
+  background-color: var(--main-bg-text-color);
   display: flex;
   flex-direction: column;
 
@@ -272,7 +281,7 @@
 
       .destination-poster {
         position: absolute;
-        z-index: -1;
+        z-index: 0;
       }
 
       .rating {
@@ -290,6 +299,12 @@
         font-weight: 700;
         line-height: 18px;
         padding-left: 8px;
+        position: absolute;
+        z-index: 1;
+
+        .star {
+          color: var(--secondary-color);
+        }
       }
 
       .destination {
@@ -302,7 +317,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        margin-top: 328px;
+        margin-top: 410px;
 
         .title-wrapper {
           display: flex;
@@ -313,14 +328,14 @@
             font-weight: 700;
             font-size: 24px;
             line-height: 120%;
-            color: var(--white-color);
+            color: var(--main-bg-text-color);
           }
 
           .description {
             font-weight: 400;
             font-size: 14px;
             line-height: 18px;
-            color: var(--white-color);
+            color: var(--main-bg-text-color);
           }
         }
 
@@ -329,7 +344,7 @@
           height: 40px;
           border-radius: 4px;
           background: #FFFFFF4D;
-          color: var(--white-color);
+          color: var(--main-bg-text-color);
           display: flex;
           align-items: center;
           font-weight: 700;
@@ -349,7 +364,7 @@
 }
 
 .blog {
-  background-color: #F3F5F4;
+  background-color: var(--mint-cream-color);;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -376,7 +391,7 @@
       display: flex;
       gap: 24px;
       border-radius: 10px;
-      background-color: var(--white-color);
+      background-color: var(--main-bg-text-color);
       align-items: center;
       justify-content: center;
 
@@ -434,7 +449,8 @@
 }
 
 .photo-report {
-  margin: 0 auto;
+  width: 100%;
+  background-color: var(--main-bg-text-color);
   display: flex;
   flex-direction: column;
 
@@ -447,6 +463,8 @@
   }
 
   .photo-wrapper {
+    margin: 0 auto;
+    width: 1180px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;

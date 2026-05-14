@@ -13,7 +13,7 @@
                 <option class="option" [value]="location.value">{{ location.name }}</option>
               }
             </select>
-            <img src="/images/icons/arrow-icon.svg" class="arrow">
+            <fa-icon class="arrow" [icon]="faAngleDown"></fa-icon>
           </div>
           <span>выберите из списка</span>
         </div>
@@ -30,7 +30,7 @@
               (focus)="inputType = 'date'"
               (blur)="inputType = 'text'"
             >
-            <img src="/images/icons/calendar-icon.svg" class="arrow">
+            <fa-icon class="arrow" [icon]="faCalendar"></fa-icon>
           </div>
           <span>укажите дату</span>
         </div>
@@ -42,7 +42,7 @@
                 <option class="option" [value]="participant.value">{{ participant.name }}</option>
               }
             </select>
-            <img src="/images/icons/arrow-icon.svg" class="arrow">
+            <fa-icon class="arrow" [icon]="faAngleDown"></fa-icon>
           </div>
           <span>выберите из списка</span>
         </div>
@@ -65,7 +65,7 @@
   <div class="trips-wrapper">
     <div class="media-wrapper">
       <img src="/images/trip-mountain-main.png" class="trip-mountain-main" height="400px" width="350px">
-      <img src="/images/icons/play-video-icon.svg" class="video-icon">
+      <fa-icon class="video-icon" [icon]="faPlay"></fa-icon>
       <img src="/images/trip-mountain-secondary.png" height="400px" width="350px">
     </div>
     <div class="about-trips">
@@ -89,7 +89,7 @@
       <div class="programs-list">
         @for (program of programs; track program.id) {
           <div class="program-wrapper">
-            <img [src]="'/images/icons/' + program.icon + '.svg'" height="50px" width="50px">
+            <fa-icon [icon]="program.icon" class="icons"></fa-icon>
             <div class="program">
               <h3 class="title">{{ program.title }}</h3>
               <p class="detailed">{{ program.description }}</p>
@@ -119,19 +119,17 @@
         <div class="destination-poster">
           <img [src]="'/images/' + destination.poster + '.png'" [alt]="destination.poster" width="380px" height="500px">
         </div>
-        <div>
-          <div class="rating">
-            <img src="/images/icons/star-icon.svg" alt="star" height="24px" width="24px">
-            <span>{{ destination.rating }}</span>
+        <div class="rating">
+          <fa-icon [icon]="faStar" class="star"></fa-icon>
+          <span>{{ destination.rating }}</span>
+        </div>
+        <div class="destination">
+          <div class="title-wrapper">
+            <span class="title">{{ destination.title }}</span>
+            <span class="description">{{ destination.description }}</span>
           </div>
-          <div class="destination">
-            <div class="title-wrapper">
-              <span class="title">{{ destination.title }}</span>
-              <span class="description">{{ destination.description }}</span>
-            </div>
-            <div class="price">
-              <span>{{ destination.price }} $</span>
-            </div>
+          <div class="price">
+            <span>{{ destination.price }} $</span>
           </div>
         </div>
       </div>
