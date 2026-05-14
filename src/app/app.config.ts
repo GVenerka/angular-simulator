@@ -17,7 +17,7 @@ function getTheme(): Preset {
     return Aura;
   }
 
-  const theme: string = JSON.parse(primeTheme);
+  const theme: Theme = JSON.parse(primeTheme);
 
   const themes: Record<string, Preset> = {
     [Theme.AURA]: Aura,
