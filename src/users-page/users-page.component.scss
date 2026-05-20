@@ -9,8 +9,14 @@
   font-size: 48px;
   line-height: 29.9px;
   color: var(--users-text-color);
-  margin: 0px 650px 80px 650px;
+  margin: 0px 650px 40px 650px;
   text-transform: capitalize;
+}
+
+.count {
+  color: var(--users-text-color);
+  font-size: 25px;
+  margin: 20px 800px;
 }
 
 .users-list {
