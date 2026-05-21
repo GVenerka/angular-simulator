@@ -21,6 +21,7 @@ export class UsersPageComponent implements OnInit {
   private userService: UserService = inject(UserService);
   private filterUsersSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   faArrowsRotate: IconDefinition = faArrowsRotate;
+  usersCount: number = 0;
 
   filteredUsers$: Observable<IUser[]> = combineLatest([
     this.userService.users$,
@@ -30,18 +31,11 @@ export class UsersPageComponent implements OnInit {
         users.filter((user: IUser) =>
           user.name.trim().toLowerCase().includes(filter.trim().toLowerCase() || '')
         )
-      )
-  );
-
-  usersCount: number = 0;
-
-  constructor() {
-    this.filteredUsers$.pipe(
+      ),
       tap(users => {
         this.usersCount = users.length;
       })
-    ).subscribe();
-  }
+  );
 
   ngOnInit(): void {
     this.loadUsers();

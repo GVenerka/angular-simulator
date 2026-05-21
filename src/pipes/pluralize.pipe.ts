@@ -19,7 +19,7 @@ export class PluralizePipe implements PipeTransform {
     } else {
       count = many;
     }
-    return `${value} ${count}`;
+    return `${ value } ${ count }`;
   }
 
 }

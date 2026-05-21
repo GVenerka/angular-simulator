@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, inject, Input, Renderer2 } from '@angular/core';
 import { IGradientConfiguration } from '../interfaces/IGradientConfiguration';
 
 @Directive({
@@ -7,15 +7,14 @@ import { IGradientConfiguration } from '../interfaces/IGradientConfiguration';
 export class GradientBorderDirective {
 
   private timer!: number | null;
+  private el: ElementRef = inject(ElementRef);
+  private renderer: Renderer2 = inject(Renderer2);
 
   @Input() gradientConfiguration: IGradientConfiguration = {
     delay: 1000,
     colors: ['#fae503', '#126509', '#ff0000'],
     thickness: '2px'
   };
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
