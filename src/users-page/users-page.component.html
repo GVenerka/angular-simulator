@@ -4,6 +4,7 @@
 <div class="wrapper">
   <app-create-user (createUser)="onCreateUser($event)"/>
   <h1 class="title">список пользователей</h1>
+  <div class="count">{{ usersCount | pluralize: 'пользователей': 'пользователя': 'пользователь' }}</div>
   <app-users-filter (filterUsers)="onFilterChange($event)"/>
   <div class="users-list">
     @for (user of filteredUsers$ | async; track user.id) {

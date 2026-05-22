@@ -8,10 +8,11 @@ import { CreateUserComponent } from "../create-user/create-user.component";
 import { UsersFilterComponent } from "../users-filter/users-filter.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowsRotate, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { PluralizePipe } from '../pipes/pluralize.pipe';
 
 @Component({
   selector: 'app-users-page',
-  imports: [AsyncPipe, UserCardComponent, CreateUserComponent, UsersFilterComponent, FontAwesomeModule],
+  imports: [AsyncPipe, UserCardComponent, CreateUserComponent, UsersFilterComponent, FontAwesomeModule, PluralizePipe],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',
 })
@@ -20,6 +21,7 @@ export class UsersPageComponent implements OnInit {
   private userService: UserService = inject(UserService);
   private filterUsersSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   faArrowsRotate: IconDefinition = faArrowsRotate;
+  usersCount: number = 0;
 
   filteredUsers$: Observable<IUser[]> = combineLatest([
     this.userService.users$,
@@ -29,7 +31,8 @@ export class UsersPageComponent implements OnInit {
         users.filter((user: IUser) =>
           user.name.trim().toLowerCase().includes(filter.trim().toLowerCase() || '')
         )
-      )
+      ),
+      tap((users: IUser[]) => { this.usersCount = users.length })
   );
 
   ngOnInit(): void {
