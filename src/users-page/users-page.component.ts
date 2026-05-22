@@ -32,9 +32,7 @@ export class UsersPageComponent implements OnInit {
           user.name.trim().toLowerCase().includes(filter.trim().toLowerCase() || '')
         )
       ),
-      tap(users => {
-        this.usersCount = users.length;
-      })
+      tap((users: IUser[]) => { this.usersCount = users.length })
   );
 
   ngOnInit(): void {
