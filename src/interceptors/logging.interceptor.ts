@@ -1,21 +1,24 @@
-import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
+import { catchError, tap, throwError } from 'rxjs';
 
-export const loggingInterceptor: HttpInterceptorFn = (req, next) => {
+export const loggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
 
-  const startTime = Date.now();
+  const startTime: number = Date.now();
+  const logRequest = (status: number): void => {
+    const duration: number = Date.now() - startTime;
+    console.log(req.method, req.url, status, `${duration} ms`);
+  };
+
   return next(req).pipe(
-    tap({
-      next: (event) => {
-        if (event instanceof HttpResponse) {
-          const duration = Date.now() - startTime;
-          console.log(req.method, req.url, event.status, `${duration} ms`);
-        }
-      },
-      error: (error) => {
-        const duration = Date.now() - startTime;
-        console.log(req.method, req.url, error.status, `${duration} ms`);
-      },
-    })
+    tap((event) => {
+      if (event instanceof HttpResponse) {
+        logRequest(event.status);
+      }
+    }),
+    catchError((error: HttpErrorResponse) => {
+      logRequest(error.status);
+      return throwError(() => error);
+    }),
   );
+  
 };
