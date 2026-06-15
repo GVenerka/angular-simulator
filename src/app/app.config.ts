@@ -6,10 +6,12 @@ import Lara from '@primeuix/themes/lara';
 import Nora from '@primeuix/themes/nora';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { Preset } from '@primeuix/themes/types';
 import { Theme } from '../enums/Theme';
 import { ITheme } from '../interfaces/ITheme';
+import { errorInterceptor } from '../interceptors/error.interceptor';
+import { loggingInterceptor } from '../interceptors/logging.interceptor';
 
 function getTheme(): Preset {
   const primeTheme: string | null = localStorage.getItem('primeTheme');
@@ -46,6 +48,7 @@ export const appConfig: ApplicationConfig = {
           darkModeSelector: '.my-app-dark'
         }
       }
-    })
+    }),
+    provideHttpClient(withInterceptors([errorInterceptor, loggingInterceptor]))
   ]
 };
