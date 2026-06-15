@@ -1,4 +1,4 @@
-import { HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
 import { catchError, tap, throwError } from 'rxjs';
 
 export const loggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
@@ -6,11 +6,11 @@ export const loggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>,
   const startTime: number = Date.now();
   const logRequest = (status: number): void => {
     const duration: number = Date.now() - startTime;
-    console.log(req.method, req.url, status, `${duration} ms`);
+    console.log(req.method, req.url, status, `${ duration } ms`);
   };
 
   return next(req).pipe(
-    tap((event) => {
+    tap((event: HttpEvent<unknown>) => {
       if (event instanceof HttpResponse) {
         logRequest(event.status);
       }
